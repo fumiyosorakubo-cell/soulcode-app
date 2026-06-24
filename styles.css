@@ -1350,3 +1350,16 @@ h2{color:#f5f1e6 !important}
 /* セクション説明文を1行に収まりやすく v15 */
 .section-heading p:not(.eyebrow){max-width:820px}
 @media(max-width:820px){.section-heading p:not(.eyebrow){max-width:600px}}
+
+/* 完全版鑑定書：章立て・宇宙的デザイン v16 */
+.fr-sec{margin:0 0 24px;padding:0 0 22px;border-bottom:1px solid rgba(212,180,106,.14)}
+.fr-sech{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.fr-num{flex:none;font-family:"Hiragino Mincho ProN",serif;font-size:18px;color:#9fe2ef;width:40px;height:40px;
+  border:1px solid rgba(140,180,255,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;
+  text-shadow:0 0 12px rgba(140,200,255,.6);box-shadow:0 0 18px rgba(80,150,230,.25),inset 0 0 12px rgba(120,90,220,.2)}
+.fr-sech h3{font-family:"Hiragino Mincho ProN",serif;font-size:19px;color:#f0d99a;margin:0;letter-spacing:.04em;
+  text-shadow:0 0 14px rgba(212,180,106,.3)}
+.fr-secbody{padding-left:54px}
+.fr-ml{font-size:11px;letter-spacing:.32em;color:#cdbb83;margin-bottom:12px}
+.fr-end{text-align:center;margin-top:24px;color:#9aa2bc;font-size:12px;letter-spacing:.18em}
+@media(max-width:480px){.fr-secbody{padding-left:0}.fr-sech h3{font-size:17px}}
