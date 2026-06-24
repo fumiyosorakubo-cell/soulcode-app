@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>完全版ソウルコード鑑定書｜そらくぼ ふみよ 様</title>
+<style>
+  :root{--navy:#0a1728;--navy2:#1d3550;--gold:#b9933f;--gold2:#d4b46a;--ink:#1f2a3a;--muted:#5d6878;--paper:#fbf9f3;--line:rgba(185,147,63,.35)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:var(--ink);background:#e9e6dd;line-height:1.95}
+  .page{width:820px;min-height:1160px;margin:24px auto;background:var(--paper);padding:78px 70px;position:relative;box-shadow:0 10px 40px rgba(0,0,0,.12);page-break-after:always}
+  .min{font-family:"Hiragino Mincho ProN","Yu Mincho",serif}
+  .eyebrow{font-family:inherit;letter-spacing:.34em;font-size:12px;color:var(--gold);font-weight:700}
+  h1{font-family:"Hiragino Mincho ProN",serif;font-size:40px;line-height:1.4;font-weight:600;letter-spacing:.04em;margin:16px 0}
+  h2{font-family:"Hiragino Mincho ProN",serif;font-size:25px;font-weight:600;color:var(--navy);border-bottom:1px solid var(--line);padding-bottom:13px;margin:0 0 22px;letter-spacing:.03em}
+  h2 .no{color:var(--gold);margin-right:14px;font-size:20px}
+  h3{font-size:18px;color:var(--navy2);margin:24px 0 8px;font-weight:700}
+  p{font-size:15.5px;margin:0 0 15px;color:#34404f}
+  .lead{font-size:17px;color:var(--muted)}
+  .cover{background:linear-gradient(165deg,#0a1728,#1d3550 60%,#26243f);color:#f4f1e6;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+  .cover .eyebrow{color:var(--gold2)}
+  .cover h1{color:#fff;font-size:44px}
+  .cover .name{font-size:22px;margin-top:26px;letter-spacing:.1em;color:#fff}
+  .cover .code{font-family:"Hiragino Mincho ProN",serif;font-size:40px;letter-spacing:.12em;color:#fff;margin-top:30px}
+  .cover .code b{color:var(--gold2)}
+  .cover .title-en{margin-top:26px;font-size:13px;letter-spacing:.4em;color:var(--gold2)}
+  .cover .title-jp{font-family:"Hiragino Mincho ProN",serif;font-size:30px;margin-top:8px}
+  .cover .uniq{margin-top:30px;font-size:12px;letter-spacing:.3em;color:#c7bf9d;border:1px solid var(--line);border-radius:999px;padding:8px 22px}
+  .cover .issued{margin-top:30px;font-size:13px;color:#b9b08c;letter-spacing:.2em}
+  .moon{width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 38% 38%,#2b2f57,#11132e);box-shadow:0 0 28px 6px rgba(212,180,106,.35);margin-bottom:26px}
+  .cores .row{display:flex;align-items:center;gap:14px;margin-bottom:13px}
+  .cores .b{flex:none;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:"Hiragino Mincho ProN",serif;font-size:20px;color:var(--gold);font-weight:600}
+  .cores .nm{flex:1}.cores .nm b{font-size:15px;color:var(--navy)}.cores .nm span{font-size:13px;color:var(--muted);margin-left:8px}
+  .cores .tr{flex:none;width:200px;height:8px;background:#ece4d2;border-radius:5px;overflow:hidden}
+  .cores .fl{height:100%;background:linear-gradient(90deg,#b9933f,#d4b46a)}
+  .cores .v{flex:none;width:30px;text-align:right;font-family:"Hiragino Mincho ProN",serif;font-size:18px;color:var(--gold)}
+  .box{background:#fff;border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:8px;padding:24px 28px;margin:18px 0}
+  .msg{background:linear-gradient(165deg,#10253f,#1d3550);color:#f4f1e6;border-radius:10px;padding:32px 34px;text-align:center;font-size:17px;line-height:2.1}
+  .msg .big{font-size:23px;color:var(--gold2);display:block;margin-top:16px}
+  .cta{border:1px dashed var(--gold);border-radius:10px;padding:22px 26px;margin-top:22px;background:#fff}
+  .cta .price b{font-size:21px;color:#9b6b5d}
+  ul{margin:0 0 15px 1.2em}li{font-size:15.5px;margin-bottom:8px;color:#34404f}
+  .foot{position:absolute;bottom:34px;left:0;width:100%;text-align:center;font-size:12px;color:var(--muted);letter-spacing:.14em}
+</style>
+</head>
+<body>
+
+<!-- 表紙 -->
+<section class="page cover">
+  <img src="assets/logo-mark.png" alt="ソウルコード分析学" style="width:170px;height:auto;margin-bottom:22px;filter:drop-shadow(0 6px 24px rgba(212,180,106,.5))" />
+  <p class="eyebrow">SOUL CODE 分析</p>
+  <h1>完全版<br>ソウルコード鑑定書</h1>
+  <p class="name">そらくぼ ふみよ 様</p>
+  <div class="code">SOUL CODE <b>S9·C6·L5·D4·B4</b></div>
+  <p class="title-en">THE TRAILBLAZER</p>
+  <p class="title-jp min">道を切り拓く者</p>
+  <p class="uniq">ONE OF A KIND ・ 唯一無二</p>
+  <p class="issued">発行日 2026.06.24</p>
+  <div class="foot">ソウルコードリサーチャー　Fumiyo Sorakubo</div>
+</section>
+
+<!-- 1 はじめに -->
+<section class="page">
+  <p class="eyebrow">INTRODUCTION</p>
+  <h2><span class="no">1</span>はじめに</h2>
+  <p class="lead">この鑑定書を手に取ってくださり、ありがとうございます。</p>
+  <p>ソウルコードは、あなたの「名前・生年月日・出生時間・出生地」という4つの事実を入り口に、古代の叡智と最新の分析学を重ね合わせて、あなたという存在を読み解く新しい分析体系です。占いのように当たり外れを語るものではなく、あなたの中にもともとある力の傾向を、データから立体的に描き出します。</p>
+  <p>あなたのソウルコードは <b>S9·C6·L5·D4·B4</b>。この並びを持つ人は、世界にあなたしかいません。これから、その意味を一つずつひらいていきます。</p>
+  <div class="foot">— 1 —</div>
+</section>
+
+<!-- 2 5つの力 -->
+<section class="page">
+  <p class="eyebrow">FIVE SOUL CORES</p>
+  <h2><span class="no">2</span>あなたを動かす5つの力</h2>
+  <p>ソウルコードは、人の魂を5つの根源の力でとらえます。数値が高い力ほど、あなたらしさとして強くあらわれます。</p>
+  <div class="cores">
+    <div class="row"><div class="b">S</div><div class="nm"><b>SOAR</b><span>自由に発想し、知性で軽やかに動く力</span></div><div class="tr"><div class="fl" style="width:95%"></div></div><div class="v">9</div></div>
+    <div class="row"><div class="b">C</div><div class="nm"><b>CORE</b><span>意志を貫き、決断して形にする力</span></div><div class="tr"><div class="fl" style="width:62%"></div></div><div class="v">6</div></div>
+    <div class="row"><div class="b">L</div><div class="nm"><b>LUMEN</b><span>自分を表現し、人に伝え、照らす力</span></div><div class="tr"><div class="fl" style="width:55%"></div></div><div class="v">5</div></div>
+    <div class="row"><div class="b">D</div><div class="nm"><b>DEEP</b><span>深く探究し、本質を見抜く力</span></div><div class="tr"><div class="fl" style="width:44%"></div></div><div class="v">4</div></div>
+    <div class="row"><div class="b">B</div><div class="nm"><b>BOND</b><span>人と調和し、共感でつなぐ力</span></div><div class="tr"><div class="fl" style="width:44%"></div></div><div class="v">4</div></div>
+  </div>
+  <p style="margin-top:20px">あなたの主役は <b>SOAR（自由と知性）</b>。そこに <b>CORE（意志と決断）</b> が続きます。「自由にひらめき、軽やかに動きながら、ここぞで決め切る」——これがあなたの推進力の正体です。</p>
+  <div class="foot">— 2 —</div>
+</section>
+
+<!-- 3 各コア詳細 -->
+<section class="page">
+  <p class="eyebrow">YOUR CORES IN DEPTH</p>
+  <h2><span class="no">3</span>あなたの力を、もっと深く</h2>
+  <h3>SOAR｜自由と知性（あなたの主軸）</h3>
+  <p>あなたは、ひとつの枠にとどまらず、軽やかに発想を飛ばせる人。好奇心が広く、新しい情報や視点を取り込んで、自分なりに組み替えていく知性があります。「こうあるべき」より「こうしたら面白い」で動けるのが、あなたの自由さです。</p>
+  <h3>CORE｜意志と決断（あなたを支える芯）</h3>
+  <p>自由でありながら、芯はぶれません。大事な場面では迷いを断ち切り、自分の意志で決めて形にできる。この「自由 × 決断」の組み合わせが、あなたを"動くだけで終わらない人"にしています。</p>
+  <h3>LUMEN・DEEP・BOND（あなたを彩る力）</h3>
+  <p>表現して伝える力（LUMEN）、本質を見抜く力（DEEP）、人と調和する力（BOND）も、あなたの中にバランスよく備わっています。主役の2つを支え、場面に応じて顔を出す、頼れる脇役たちです。</p>
+  <div class="foot">— 3 —</div>
+</section>
+
+<!-- 4 魂の使命 -->
+<section class="page">
+  <p class="eyebrow">YOUR SOUL MISSION</p>
+  <h2><span class="no">4</span>あなたの魂の使命</h2>
+  <p>5つの力が重なり合うと、あなただけの「魂の使命」が浮かび上がります。</p>
+  <div class="box">
+    <h3 style="margin-top:0;color:var(--gold)">道を切り拓く者 / The Trailblazer</h3>
+    <p style="margin-bottom:0">自由な発想（SOAR）と、決断して形にする力（CORE）。この2つが合わさったあなたは、<b>まだ誰も歩いていない道を、自分の手で切り拓いていく人</b>です。</p>
+  </div>
+  <p>あなたの魂の使命は、<b>自由な発想と決断力で、まだない道を切り拓くこと</b>。前例がないことに「やってみよう」と踏み出し、形にしていく——その一歩が、後から来る人の道しるべになります。あなたが切り拓いた道を、誰かが安心して歩いていくのです。</p>
+  <div class="foot">— 4 —</div>
+</section>
+
+<!-- 5 活かし方 -->
+<section class="page">
+  <p class="eyebrow">HOW TO LIVE IT</p>
+  <h2><span class="no">5</span>才能と強みの活かし方</h2>
+  <ul>
+    <li><b>0→1</b>が得意。新しい企画・新しい分野の立ち上げで力を発揮します。整った場より、これから作る場で輝くタイプ。</li>
+    <li><b>「自由に発想 → 決断して形に」</b>の流れを自分の仕事の型に。アイデアで終わらせず、決め切るところまで持っていくと成果になります。</li>
+    <li>新しいことを<b>わかりやすく伝える</b>（LUMEN）と、共感の輪（BOND）が広がり、あなたの拓いた道に人が集まります。</li>
+  </ul>
+  <h2><span class="no">6</span>人間関係の傾向</h2>
+  <p>自由を尊重し合える相手と、心地よい関係を築けます。あなたの「面白がる力」は人を惹きつけ、場を軽やかにします。一方で、決断が早いぶん、じっくり型の人には歩幅を合わせる意識を持つと、より深い信頼が育ちます。</p>
+  <div class="foot">— 5 —</div>
+</section>
+
+<!-- 6 これから＋メッセージ -->
+<section class="page">
+  <p class="eyebrow">FOR YOUR FUTURE</p>
+  <h2><span class="no">7</span>これからの過ごし方</h2>
+  <p>今のあなたには、「自分が信じた新しい道を、形にして発信していく」流れが追い風です。完璧を待たず、まず小さく踏み出してください。あなたが動くたびに道はでき、その背中が誰かの希望になります。迷ったら、いちばん自由でいられる選択を。</p>
+  <h2><span class="no">8</span>魂からのメッセージ</h2>
+  <div class="msg">
+    あなたは「たまたま」生まれたのではありません。<br>
+    名前も、生まれた日も、時間も、場所も——<br>
+    すべてが重なって、世界にひとつだけのコードになりました。
+    <span class="big">あなたは、かけがえのない大切な存在です。</span>
+  </div>
+  <div class="foot">— 6 —</div>
+</section>
+
+<!-- 7 おわりに -->
+<section class="page">
+  <p class="eyebrow">NEXT STEP</p>
+  <h2><span class="no">9</span>おわりに</h2>
+  <p>ここまで読んでくださり、ありがとうございました。この鑑定書が、あなたが自分の力を信じ、毎日の選択に自信を持つための羅針盤になればうれしいです。</p>
+  <h3>もっと深く読み解きたい方へ</h3>
+  <p>文章では伝えきれない部分を、直接お話ししながら一緒に読み解く個別セッションをご用意しています。いまの迷いや挑戦に、あなたのソウルコードをどう活かすか——具体的にお伝えします。</p>
+  <div class="cta">
+    <p style="margin-bottom:8px"><b>個別セッション（オンライン60分）</b></p>
+    <p class="price" style="margin-bottom:10px"><s>¥33,000</s> → <b>¥10,000</b>（開設記念キャンペーン）</p>
+    <p style="margin-bottom:0">お申し込み・ご相談は公式LINEから 🌙</p>
+  </div>
+  <div class="foot">ソウルコードリサーチャー　Fumiyo Sorakubo</div>
+</section>
+
+</body>
+</html>

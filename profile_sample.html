@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ソウルコード分析プロファイル（サンプル）</title>
+<style>
+  :root{--navy:#0a1728;--navy2:#1d3550;--gold:#b9933f;--gold2:#d4b46a;--ink:#1f2a3a;--muted:#5d6878;--paper:#fbf9f3;--line:rgba(185,147,63,.35)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:var(--ink);background:#e9e6dd;line-height:1.8}
+  .sheet{width:880px;margin:24px auto;background:var(--paper);box-shadow:0 10px 40px rgba(0,0,0,.12)}
+  .head{background:linear-gradient(160deg,#0a1728,#1d3550 70%,#26243f);color:#f4f1e6;padding:48px 56px;text-align:center}
+  .head .eyebrow{letter-spacing:.3em;font-size:13px;color:var(--gold2);font-weight:700}
+  .head h1{font-family:"Hiragino Mincho ProN",serif;font-size:34px;font-weight:600;margin:14px 0 8px}
+  .head .name{font-size:18px;letter-spacing:.08em}
+  .head .code{display:inline-block;margin-top:18px;border:1px solid var(--line);border-radius:10px;padding:10px 20px;color:var(--gold2);letter-spacing:.06em;font-size:16px}
+  .body{padding:44px 56px}
+  .sec-title{font-family:"Hiragino Mincho ProN",serif;font-size:22px;color:var(--navy);border-bottom:1px solid var(--line);padding-bottom:10px;margin:0 0 22px;font-weight:600}
+  .sec-title .en{font-size:12px;color:var(--gold);letter-spacing:.2em;display:block;font-family:sans-serif;margin-bottom:4px}
+  .radar-wrap{display:flex;gap:30px;align-items:center;flex-wrap:wrap;justify-content:center}
+  canvas{flex:none}
+  .bars{flex:1;min-width:320px}
+  .bar{margin-bottom:12px}
+  .bar .lbl{display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px}
+  .bar .lbl b{color:var(--navy)}
+  .bar .lbl span{color:var(--gold);font-weight:700}
+  .bar .track{height:9px;background:#ece4d2;border-radius:6px;overflow:hidden}
+  .bar .fill{height:100%;background:linear-gradient(90deg,#b9933f,#d4b46a);border-radius:6px}
+  .cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+  .cat{border:1px solid var(--line);border-radius:10px;padding:18px 20px;background:#fff}
+  .cat .ic{font-size:22px}
+  .cat h3{font-size:15px;color:var(--muted);font-weight:700;margin:6px 0 6px}
+  .cat p{font-size:16px;color:var(--ink);margin:0}
+  .cat .big{font-size:19px;color:var(--navy);font-weight:700}
+  .keys{display:flex;gap:12px;justify-content:center;margin-top:8px}
+  .keys span{background:var(--navy);color:var(--gold2);border-radius:999px;padding:10px 22px;font-size:16px;letter-spacing:.05em}
+  .note{font-size:12.5px;color:var(--muted);margin-top:26px;line-height:1.7}
+  .mt{margin-top:40px}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="head">
+    <p class="eyebrow">SOUL CODE 分析プロファイル</p>
+    <h1>あなたの分析プロファイル</h1>
+    <p class="name">そらくぼ ふみよ 様</p>
+    <div class="code">魂数5 ・ 人生数7 ・ 金 ・ 未 ・ 西 ／ 6系統統合分析</div>
+  </div>
+
+  <div class="body">
+    <h2 class="sec-title"><span class="en">MULTI-AXIS ANALYSIS</span>8軸プロファイル</h2>
+    <div class="radar-wrap">
+      <canvas id="radar" width="420" height="400"></canvas>
+      <div class="bars" id="bars"></div>
+    </div>
+
+    <h2 class="sec-title mt"><span class="en">PRACTICAL CATEGORIES</span>あなたの実用ガイド</h2>
+    <div class="cat-grid">
+      <div class="cat"><div class="ic">🎨</div><h3>ラッキーカラー</h3><p class="big">白・ゴールド・シルバー</p><p style="font-size:13px;color:var(--muted)">元素「金」の輝きの色</p></div>
+      <div class="cat"><div class="ic">💼</div><h3>向いている職種・働き方</h3><p>研究者／教育者・講師／作家・編集／カウンセラー／コンサルタント<br><span style="font-size:13px;color:var(--muted)">＝探究して、磨いて、伝える役割</span></p></div>
+      <div class="cat"><div class="ic">💎</div><h3>パワーストーン</h3><p class="big">水晶・ホワイトトパーズ</p><p style="font-size:13px;color:var(--muted)">金の本質を澄ませる石</p></div>
+      <div class="cat"><div class="ic">🧭</div><h3>ラッキー方位</h3><p class="big">西</p><p style="font-size:13px;color:var(--muted)">伝える・分かち合いの方位</p></div>
+      <div class="cat"><div class="ic">🤝</div><h3>相性のいいタイプ</h3><p>水・土の元素タイプ<br><span style="font-size:13px;color:var(--muted)">金を生かし、金が生かす関係（五行相生）</span></p></div>
+      <div class="cat"><div class="ic">📅</div><h3>ラッキーデー</h3><p class="big">金曜日</p><p style="font-size:13px;color:var(--muted)">金のエネルギーが高まる日</p></div>
+    </div>
+
+    <div class="keys">
+      <span>探究</span><span>洗練</span><span>伝える</span>
+    </div>
+
+    <p class="note">※ このプロファイルは、名前・生年月日・出生時間・出生地の4つのデータを、数秘術・四柱推命・西洋占星術・九星気学・宿曜・方位学の6系統で多角的に分析し、独自の8軸スコアに統合したものです（古代の叡智 × 最新の分析技術）。同じプロファイルを持つ方は、ほとんど存在しません。</p>
+  </div>
+</div>
+
+<script>
+  const axes=[["探究・知性",88],["創造・表現",66],["行動・推進力",54],["統率・決断",74],["安定・継続",58],["調和・共感",72],["直感・感受性",64],["発信・つながり",82]];
+  // レーダー
+  const ctx=document.getElementById('radar').getContext('2d');
+  const cx=210,cy=200,R=140,N=axes.length;
+  const pt=(i,r)=>{const a=-Math.PI/2+i*2*Math.PI/N;return [cx+r*Math.cos(a),cy+r*Math.sin(a)];};
+  ctx.strokeStyle='rgba(185,147,63,.3)';ctx.lineWidth=1;
+  [.25,.5,.75,1].forEach(f=>{ctx.beginPath();for(let i=0;i<N;i++){const[x,y]=pt(i,R*f);i?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.closePath();ctx.stroke();});
+  for(let i=0;i<N;i++){const[x,y]=pt(i,R);ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(x,y);ctx.stroke();}
+  ctx.beginPath();for(let i=0;i<N;i++){const[x,y]=pt(i,R*axes[i][1]/100);i?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.closePath();
+  ctx.fillStyle='rgba(212,180,106,.38)';ctx.fill();ctx.strokeStyle='#b9933f';ctx.lineWidth=2;ctx.stroke();
+  ctx.fillStyle='#b9933f';for(let i=0;i<N;i++){const[x,y]=pt(i,R*axes[i][1]/100);ctx.beginPath();ctx.arc(x,y,3,0,7);ctx.fill();}
+  ctx.fillStyle='#1f2a3a';ctx.font='12px "Hiragino Kaku Gothic ProN",sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+  for(let i=0;i<N;i++){const[x,y]=pt(i,R+24);ctx.fillText(axes[i][0],x,y);}
+  // バー
+  const bars=axes.slice().sort((a,b)=>b[1]-a[1]).map(([l,v])=>`<div class="bar"><div class="lbl"><b>${l}</b><span>${v}</span></div><div class="track"><div class="fill" style="width:${v}%"></div></div></div>`).join('');
+  document.getElementById('bars').innerHTML=bars;
+</script>
+</body>
+</html>

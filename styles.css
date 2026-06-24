@@ -1,0 +1,1343 @@
+:root {
+  color-scheme: light;
+  --navy-950: #06111f;
+  --navy-900: #0a1728;
+  --navy-800: #10253f;
+  --navy-700: #1d3550;
+  --gold-500: #d4b46a;
+  --gold-300: #f0d995;
+  --paper: #f8f6ef;
+  --white: #ffffff;
+  --ink: #142033;
+  --muted: #687388;
+  --teal: #78aaa0;
+  --rosewood: #9b6b5d;
+  --line: rgba(212, 180, 106, 0.35);
+  --shadow: 0 24px 80px rgba(6, 17, 31, 0.18);
+  --radius: 8px;
+  font-family:
+    "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", "Times New Roman",
+    serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--paper);
+  /* 全体の文字を少し大きく（大画面で過大にならない範囲） */
+  font-size: 112%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, rgba(248, 246, 239, 0.98), rgba(238, 245, 242, 0.92)),
+    var(--paper);
+  font-family:
+    "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  letter-spacing: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+.site-shell {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.site-header {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 76px;
+  padding: 14px clamp(18px, 4vw, 56px);
+  color: var(--white);
+  background: rgba(6, 17, 31, 0.82);
+  border-bottom: 1px solid rgba(212, 180, 106, 0.24);
+  backdrop-filter: blur(16px);
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand-sigil {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  color: var(--gold-300);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-family: Georgia, serif;
+  font-size: 0.82rem;
+}
+
+.brand-name,
+.brand-caption {
+  display: block;
+  white-space: nowrap;
+}
+
+.brand-name {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: clamp(1rem, 2vw, 1.18rem);
+}
+
+.brand-caption {
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.75rem;
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.top-nav button {
+  min-height: 38px;
+  padding: 0 12px;
+  color: rgba(255, 255, 255, 0.82);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 999px;
+}
+
+.top-nav button:hover,
+.top-nav button:focus-visible {
+  color: var(--white);
+  border-color: rgba(212, 180, 106, 0.46);
+  outline: none;
+}
+
+.screen {
+  display: none;
+  min-height: 100vh;
+  padding: 120px clamp(18px, 5vw, 72px) 72px;
+}
+
+.screen.is-active {
+  display: block;
+}
+
+.hero-screen {
+  position: relative;
+  display: none;
+  min-height: 100vh;
+  align-items: center;
+  overflow: hidden;
+  color: var(--white);
+  background: var(--navy-950);
+}
+
+.hero-screen.is-active {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 0 clamp(24px, 6vw, 96px) 40px;
+}
+
+.hero-visual {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(6, 17, 31, 0.96), rgba(6, 17, 31, 0.72) 42%, rgba(6, 17, 31, 0.34)),
+    url("./assets/soul-passport-bg.png") center / cover no-repeat;
+  transform: scale(1.02);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--gold-500);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+h1 {
+  max-width: 16em;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  line-height: 1.2;
+}
+
+h2 {
+  color: var(--navy-900);
+  font-size: clamp(1.6rem, 3.4vw, 2.5rem);
+  line-height: 1.22;
+}
+
+h3 {
+  font-size: clamp(1.16rem, 2vw, 1.45rem);
+}
+
+.hero-lead {
+  margin: 26px 0 0;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  line-height: 1.6;
+}
+
+.hero-copy {
+  max-width: 560px;
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.primary-action,
+.secondary-action,
+.offer-card button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.primary-action {
+  margin-top: 34px;
+  color: var(--navy-950);
+  background: linear-gradient(180deg, var(--gold-300), var(--gold-500));
+  box-shadow: 0 14px 38px rgba(212, 180, 106, 0.24);
+  font-weight: 700;
+}
+
+.secondary-action {
+  color: var(--navy-900);
+  background: rgba(255, 255, 255, 0.86);
+  border-color: rgba(29, 53, 80, 0.16);
+}
+
+.primary-action:hover,
+.secondary-action:hover,
+.offer-card button:hover {
+  transform: translateY(-1px);
+}
+
+.full {
+  width: 100%;
+}
+
+.hero-lower {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  width: 100%;
+  max-width: 1080px;
+  margin: 48px auto 0;
+  border: 1px solid rgba(212, 180, 106, 0.3);
+  background: rgba(212, 180, 106, 0.24);
+}
+
+.hero-lower span {
+  min-height: 54px;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  color: rgba(255, 255, 255, 0.82);
+  background: rgba(6, 17, 31, 0.58);
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.section-heading {
+  width: min(860px, 100%);
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.section-heading p:not(.eyebrow) {
+  margin: 18px auto 0;
+  max-width: 640px;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.entry-form,
+.admin-panel,
+.line-band {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: clamp(20px, 4vw, 38px);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(29, 53, 80, 0.12);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.field + .field,
+.date-grid + .time-row,
+.time-row + .field {
+  margin-top: 20px;
+}
+
+.field span,
+.date-grid legend {
+  color: var(--navy-800);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.field input,
+.field select,
+.field textarea,
+.admin-panel textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid rgba(29, 53, 80, 0.18);
+  border-radius: var(--radius);
+}
+
+.field textarea,
+.admin-panel textarea {
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+.admin-panel textarea:focus {
+  border-color: var(--gold-500);
+  outline: 3px solid rgba(212, 180, 106, 0.18);
+}
+
+.field small {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.date-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 20px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.date-grid legend {
+  grid-column: 1 / -1;
+  margin-bottom: -4px;
+}
+
+.time-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 16px;
+}
+
+.check-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 14px;
+  white-space: nowrap;
+  color: var(--navy-800);
+  background: #eef5f2;
+  border: 1px solid rgba(120, 170, 160, 0.32);
+  border-radius: var(--radius);
+}
+
+.check-field input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--navy-800);
+}
+
+.form-error {
+  min-height: 24px;
+  margin: 18px 0 0;
+  color: #9b3f34;
+  font-weight: 700;
+}
+
+.generating-screen {
+  text-align: center;
+  color: var(--white);
+  background:
+    linear-gradient(rgba(6, 17, 31, 0.9), rgba(10, 23, 40, 0.94)),
+    url("./assets/soul-passport-bg.png") center / cover no-repeat;
+}
+
+.generating-screen h2 {
+  color: var(--white);
+  margin-top: 32px;
+}
+
+.generating-screen p {
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.generator-orbit {
+  position: relative;
+  width: min(320px, 76vw);
+  aspect-ratio: 1;
+  margin: 32px auto 0;
+}
+
+.generator-orbit span {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(212, 180, 106, 0.48);
+  border-radius: 50%;
+  animation: orbit 3.8s linear infinite;
+}
+
+.generator-orbit span:nth-child(2) {
+  inset: 28px;
+  border-color: rgba(120, 170, 160, 0.58);
+  animation-duration: 5s;
+  animation-direction: reverse;
+}
+
+.generator-orbit span:nth-child(3) {
+  inset: 58px;
+  border-color: rgba(255, 255, 255, 0.2);
+  animation-duration: 6.2s;
+}
+
+.generator-orbit::after {
+  content: "SC";
+  position: absolute;
+  inset: 42%;
+  display: grid;
+  place-items: center;
+  color: var(--gold-300);
+  font-family: Georgia, serif;
+  font-size: 1.1rem;
+  border: 1px solid rgba(212, 180, 106, 0.55);
+  border-radius: 50%;
+}
+
+@keyframes orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.progress-track {
+  width: min(520px, 100%);
+  height: 6px;
+  margin: 30px auto 0;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+}
+
+.progress-track span {
+  display: block;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--gold-300));
+  transition: width 380ms ease;
+}
+
+.generation-steps {
+  display: grid;
+  gap: 10px;
+  width: min(520px, 100%);
+  margin: 26px auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+.generation-steps li {
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.generation-steps li.is-lit {
+  color: var(--gold-300);
+}
+
+.award-screen {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  background:
+    linear-gradient(rgba(6, 17, 31, 0.84), rgba(6, 17, 31, 0.88)),
+    url("./assets/soul-passport-bg.png") center / cover no-repeat;
+}
+
+.award-screen.is-active {
+  display: flex;
+}
+
+.award-panel {
+  width: min(840px, 100%);
+  padding: clamp(28px, 5vw, 58px);
+  text-align: center;
+  border: 1px solid rgba(212, 180, 106, 0.5);
+  background: rgba(6, 17, 31, 0.68);
+  box-shadow: 0 34px 120px rgba(0, 0, 0, 0.32);
+}
+
+.award-panel h2 {
+  color: var(--white);
+}
+
+.award-panel p {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.soul-code-display {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 34px auto 22px;
+  padding: 18px clamp(16px, 4vw, 38px);
+  overflow-wrap: anywhere;
+  color: var(--gold-300);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(212, 180, 106, 0.5);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.72rem, 5vw, 3.8rem);
+  line-height: 1.08;
+}
+
+.award-message {
+  font-size: clamp(1.16rem, 2vw, 1.45rem);
+}
+
+.gift-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  gap: 22px;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  align-items: start;
+}
+
+.code-card,
+.gift-grid article,
+.offer-card {
+  border-radius: var(--radius);
+  border: 1px solid rgba(29, 53, 80, 0.12);
+  background: var(--white);
+  box-shadow: 0 18px 54px rgba(6, 17, 31, 0.1);
+}
+
+.code-card {
+  position: sticky;
+  top: 104px;
+  padding: 28px;
+  color: var(--white);
+  background:
+    linear-gradient(rgba(6, 17, 31, 0.78), rgba(6, 17, 31, 0.92)),
+    url("./assets/soul-passport-bg.png") center / cover no-repeat;
+}
+
+.code-card span {
+  color: var(--gold-300);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.code-card strong {
+  display: block;
+  margin: 14px 0 20px;
+  overflow-wrap: anywhere;
+  color: var(--white);
+  font-family: Georgia, serif;
+  font-size: clamp(1.32rem, 3vw, 2.2rem);
+  line-height: 1.12;
+}
+
+.code-card p {
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.gift-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.gift-grid article {
+  min-height: 176px;
+  padding: 24px;
+}
+
+.gift-grid article.wide {
+  grid-column: 1 / -1;
+}
+
+.gift-grid h3 {
+  color: var(--navy-900);
+  font-size: 1.1rem;
+}
+
+.gift-grid p {
+  margin: 14px 0 0;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.next-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 32px auto 0;
+}
+
+.next-actions .primary-action,
+.next-actions .secondary-action {
+  margin-top: 0;
+}
+
+.next-actions.left {
+  justify-content: flex-start;
+}
+
+.passport {
+  width: min(920px, 100%);
+  margin: 0 auto;
+  padding: clamp(12px, 2vw, 18px);
+  color: var(--white);
+  background:
+    linear-gradient(rgba(6, 17, 31, 0.38), rgba(6, 17, 31, 0.7)),
+    url("./assets/soul-passport-bg.png") center / cover no-repeat;
+  border-radius: var(--radius);
+  border: 1px solid rgba(212, 180, 106, 0.52);
+  box-shadow: 0 32px 100px rgba(6, 17, 31, 0.3);
+}
+
+.passport-inner {
+  min-height: 520px;
+  padding: clamp(24px, 5vw, 52px);
+  border: 1px solid rgba(212, 180, 106, 0.52);
+  background: rgba(6, 17, 31, 0.46);
+}
+
+.passport-topline,
+.passport-founder {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.86rem;
+}
+
+.passport-title-block {
+  margin-top: clamp(38px, 8vw, 84px);
+}
+
+.passport-title-block p {
+  margin: 0 0 10px;
+  color: var(--gold-300);
+}
+
+.passport-title-block h3 {
+  color: var(--white);
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.passport-title-block output {
+  display: block;
+  margin-top: 14px;
+  overflow-wrap: anywhere;
+  color: var(--gold-300);
+  font-family: Georgia, serif;
+  font-size: clamp(1.4rem, 3vw, 2.6rem);
+}
+
+.passport-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 46px 0 0;
+  padding: 0;
+  background: rgba(212, 180, 106, 0.28);
+  border: 1px solid rgba(212, 180, 106, 0.35);
+}
+
+.passport-details div {
+  min-height: 120px;
+  padding: 18px;
+  background: rgba(6, 17, 31, 0.72);
+}
+
+.passport-details dt {
+  color: var(--gold-300);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.passport-details dd {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.86);
+  line-height: 1.65;
+}
+
+.passport-founder {
+  justify-content: flex-end;
+  margin-top: 36px;
+}
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  width: min(860px, 100%);
+  margin: 0 auto;
+}
+
+.campaign-banner {
+  width: min(860px, 100%);
+  margin: 0 auto 22px;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(110deg, var(--navy-900), var(--navy-700));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.campaign-banner .campaign-tag {
+  flex: none;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--gold-500);
+  color: var(--navy-950);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.campaign-banner p {
+  margin: 0;
+  color: var(--gold-300);
+  font-weight: 600;
+}
+
+.offer-card .price {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 2px 0 4px;
+}
+
+.offer-card .price-old {
+  color: var(--muted);
+  text-decoration: line-through;
+  font-size: 1rem;
+}
+
+.offer-card .price-now {
+  color: var(--rosewood);
+  font-size: 1.7rem;
+  font-weight: 800;
+}
+
+.offers-note {
+  width: min(860px, 100%);
+  margin: 18px auto 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.offer-card {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  min-height: 420px;
+  padding: 24px;
+}
+
+.offer-card.featured {
+  border-color: rgba(212, 180, 106, 0.54);
+  background: #fffdf6;
+}
+
+.offer-kicker {
+  margin: 0;
+  color: var(--rosewood);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.offer-card strong {
+  color: var(--navy-900);
+  font-size: 1.08rem;
+}
+
+.offer-card p:not(.offer-kicker) {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.offer-card button {
+  align-self: end;
+  width: 100%;
+  margin-top: auto;
+  color: var(--white);
+  background: var(--navy-800);
+  border-color: rgba(212, 180, 106, 0.2);
+}
+
+.line-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: min(980px, 100%);
+  margin-top: 34px;
+  background: #eef5f2;
+}
+
+.line-band h3 {
+  color: var(--navy-900);
+}
+
+.line-band p:not(.eyebrow) {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.admin-screen {
+  background: #eef2f0;
+}
+
+.admin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: min(980px, 100%);
+  margin: 0 auto 16px;
+}
+
+.admin-tabs button {
+  min-height: 42px;
+  padding: 0 16px;
+  color: var(--navy-800);
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(29, 53, 80, 0.12);
+  border-radius: 999px;
+}
+
+.admin-tabs button.is-active {
+  color: var(--white);
+  background: var(--navy-800);
+}
+
+.admin-panel {
+  display: none;
+  width: min(980px, 100%);
+  box-shadow: 0 16px 48px rgba(6, 17, 31, 0.1);
+}
+
+.admin-panel.is-active {
+  display: block;
+}
+
+.admin-panel h3 {
+  color: var(--navy-900);
+  margin-bottom: 12px;
+}
+
+.admin-panel p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.copy-grid,
+.sns-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.payload-box {
+  max-height: 280px;
+  overflow: auto;
+  margin: 20px 0 0;
+  padding: 16px;
+  color: #dfe9ef;
+  background: var(--navy-950);
+  border-radius: var(--radius);
+  white-space: pre-wrap;
+}
+
+.table-wrap {
+  overflow: auto;
+  border: 1px solid rgba(29, 53, 80, 0.12);
+  border-radius: var(--radius);
+}
+
+table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  background: var(--white);
+}
+
+th,
+td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(29, 53, 80, 0.1);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--navy-900);
+  background: #f1f3ee;
+  font-size: 0.86rem;
+}
+
+td {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.toast {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 30;
+  max-width: min(360px, calc(100vw - 36px));
+  padding: 14px 16px;
+  color: var(--white);
+  background: rgba(6, 17, 31, 0.92);
+  border: 1px solid rgba(212, 180, 106, 0.35);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.22);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 980px) {
+  .offer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gift-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .code-card {
+    position: static;
+  }
+
+  .passport-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    align-items: flex-start;
+    min-height: 104px;
+    flex-direction: column;
+    padding: 12px 16px;
+  }
+
+  .top-nav {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .top-nav button {
+    flex: 0 0 auto;
+  }
+
+  .screen {
+    padding: 140px 16px 48px;
+  }
+
+  .hero-screen {
+    min-height: 100svh;
+  }
+
+  .hero-lower {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .date-grid,
+  .time-row,
+  .gift-grid,
+  .offer-grid,
+  .line-band {
+    grid-template-columns: 1fr;
+  }
+
+  .time-row {
+    align-items: stretch;
+  }
+
+  .line-band {
+    display: grid;
+  }
+
+  .line-band .primary-action {
+    width: 100%;
+  }
+
+  .passport-topline {
+    display: grid;
+  }
+}
+
+@media (max-width: 430px) {
+  .brand-caption {
+    display: none;
+  }
+
+  h1 {
+    font-size: 2.7rem;
+  }
+
+  .primary-action,
+  .secondary-action {
+    width: 100%;
+  }
+
+  .entry-form,
+  .admin-panel,
+  .line-band {
+    padding: 18px;
+  }
+}
+
+@media print {
+  body {
+    background: var(--white);
+  }
+
+  .site-header,
+  .screen:not(.passport-screen),
+  .passport-screen .section-heading,
+  .passport-screen .next-actions,
+  .toast {
+    display: none !important;
+  }
+
+  .screen.passport-screen {
+    display: block !important;
+    min-height: auto;
+    padding: 0;
+  }
+
+  .passport {
+    width: 100%;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+}
+
+/* ===== 新フレームワーク：ソウルコード結果（ギフト画面） ===== */
+.sc-result{width:min(720px,100%);margin:0 auto;text-align:center;
+  background:linear-gradient(165deg,#0c1230,#19224a 60%,#241f44);color:#f3efe4;
+  border:1px solid rgba(212,180,106,.4);border-radius:18px;padding:44px 46px;box-shadow:var(--shadow)}
+.sc-unique{display:inline-block;padding:6px 20px;border:1px solid rgba(212,180,106,.5);border-radius:999px;
+  font-size:12px;letter-spacing:.3em;color:#e7d49a;margin-bottom:18px}
+.sc-result .soul-code-display{font-size:clamp(2rem,5vw,3rem);color:#fff;letter-spacing:.08em;margin:0}
+.sc-codecaption{font-size:13px;color:#9aa2bc;margin-top:10px;letter-spacing:.04em}
+.sc-title-en{margin-top:28px;font-size:13px;letter-spacing:.36em;color:#d4b46a}
+.sc-title-jp{font-family:"Hiragino Mincho ProN",serif;font-size:clamp(1.6rem,4vw,2.1rem);font-weight:600;margin-top:8px;color:#fff;letter-spacing:.06em}
+.sc-block-label{font-size:11px;letter-spacing:.34em;color:#cdbb83;margin-bottom:14px}
+.sc-cores{margin-top:30px;text-align:left}
+.core-row{display:flex;align-items:center;gap:12px;margin-bottom:11px}
+.core-badge{flex:none;width:34px;height:34px;border-radius:9px;border:1px solid rgba(212,180,106,.45);
+  display:flex;align-items:center;justify-content:center;font-family:"Hiragino Mincho ProN",serif;font-size:16px;color:#e7d49a}
+.core-name{flex:1;font-size:13.5px;color:#f3efe4}
+.core-name small{color:#9aa2bc;font-size:10.5px;letter-spacing:.08em;margin-left:6px}
+.core-track{flex:none;width:170px;height:7px;background:rgba(255,255,255,.1);border-radius:5px;overflow:hidden}
+.core-fill{display:block;height:100%;background:linear-gradient(90deg,#b9933f,#e7d49a)}
+.core-val{flex:none;width:28px;text-align:right;font-family:"Hiragino Mincho ProN",serif;color:#e7d49a;font-size:16px}
+.sc-mission{margin-top:30px;text-align:left;background:rgba(255,255,255,.04);
+  border:1px solid rgba(212,180,106,.3);border-left:4px solid #d4b46a;border-radius:10px;padding:22px 26px}
+.sc-mission p{margin:0;font-size:16px;line-height:1.95;color:#f3efe4}
+.sc-mission-en{font-size:13px;color:#9aa2bc;margin-top:10px;font-style:italic}
+@media(max-width:560px){.core-track{width:90px}.sc-result{padding:32px 22px}}
+
+/* 構成要素（出生図）の補助表示 */
+.sc-chart{margin-top:30px;text-align:left}
+.chart-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:7px 0;border-bottom:1px solid rgba(212,180,106,.16)}
+.chart-k{font-family:"Hiragino Kaku Gothic ProN",sans-serif;font-size:13.5px;color:#cdbb83}
+.chart-k small{color:#8b93ad;font-size:10px;letter-spacing:.12em;margin-left:6px}
+.chart-v{font-size:15px;color:#f3efe4}
+.chart-v small{color:#9aa2bc;font-size:11px;letter-spacing:.06em;margin-left:4px}
+.chart-planets{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;font-family:"Hiragino Kaku Gothic ProN",sans-serif;font-size:12.5px;color:#b9c0d6}
+.chart-planets span{border:1px solid rgba(212,180,106,.22);border-radius:20px;padding:5px 12px}
+.sc-chart-note{font-size:11.5px;color:#8b93ad;margin-top:14px;line-height:1.7}
+
+.sc-cores-intro{font-size:13px;color:#9aa2bc;margin:-6px 0 16px;line-height:1.75}
+.core-name small{display:inline-block}
+
+/* ============================================================
+   ゴージャス・リデザイン（ロゴ＋ラグジュアリー仕上げ）  v6
+   ============================================================ */
+/* ロゴ */
+.brand-logo{height:48px;width:auto;display:block;filter:drop-shadow(0 2px 8px rgba(212,180,106,.4))}
+.brand-name{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;letter-spacing:.08em}
+.brand-caption{letter-spacing:.18em}
+.hero-logo{height:clamp(118px,17vw,186px);width:auto;display:block;margin:0 0 26px;
+  filter:drop-shadow(0 8px 34px rgba(212,180,106,.5))}
+
+/* ページ背景：金の放射グロー＋淡い夜明け（明るい画面用） */
+body{
+  background:
+    radial-gradient(1000px 680px at 86% -8%, rgba(212,180,106,.12), transparent 60%),
+    radial-gradient(760px 520px at -12% 112%, rgba(120,170,160,.07), transparent 60%),
+    linear-gradient(180deg,#fbf9f3 0%,#f4efe4 100%);
+}
+
+/* ヘッダーを少し格上げ */
+.site-header{background:rgba(6,17,31,.86);border-bottom:1px solid rgba(212,180,106,.3);
+  box-shadow:0 6px 24px rgba(6,17,31,.25)}
+
+/* 見出し装飾：中央に金の細罫＋ダイヤ */
+.eyebrow{letter-spacing:.34em;font-weight:700}
+.section-heading h2{position:relative;padding-bottom:18px}
+.section-heading h2::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+  width:78px;height:6px;
+  background:
+    radial-gradient(circle at 50% 50%,var(--gold-500) 0 2.5px,transparent 3px) center/100% 100% no-repeat;
+}
+.section-heading h2::before{content:"";position:absolute;left:50%;bottom:2px;transform:translateX(-50%);
+  width:160px;height:1px;background:linear-gradient(90deg,transparent,rgba(212,180,106,.7),transparent)}
+
+/* ヒーローに金のグロー */
+.hero-screen.is-active::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(680px 460px at 22% 38%, rgba(212,180,106,.16), transparent 62%)}
+
+/* ボタン：金の輝き */
+.primary-action{position:relative;overflow:hidden;letter-spacing:.05em;
+  box-shadow:0 12px 32px rgba(212,180,106,.4), inset 0 1px 0 rgba(255,255,255,.55)}
+.primary-action:hover{box-shadow:0 16px 44px rgba(212,180,106,.55), inset 0 1px 0 rgba(255,255,255,.65)}
+.secondary-action{backdrop-filter:blur(4px);box-shadow:0 8px 24px rgba(6,17,31,.12)}
+
+/* 結果カード：内側に金の二重枠＋グロー */
+.sc-result{position:relative;
+  background:
+    radial-gradient(620px 320px at 80% -4%, rgba(212,180,106,.18), transparent 60%),
+    linear-gradient(165deg,#0c1230 0%,#19224a 60%,#241f44 100%);
+  border:1px solid rgba(212,180,106,.5);
+  box-shadow:0 34px 100px rgba(6,17,31,.55)}
+.sc-result::before{content:"";position:absolute;inset:12px;border:1px solid rgba(212,180,106,.18);
+  border-radius:14px;pointer-events:none}
+.soul-code-display{text-shadow:0 2px 18px rgba(212,180,106,.35)}
+
+/* 商品カード：上質な紙＋陰影 */
+.offer-card{background:linear-gradient(180deg,#fffdf7,#fbf6ea);
+  box-shadow:0 18px 48px rgba(6,17,31,.14)}
+.offer-card.featured{box-shadow:0 24px 64px rgba(212,180,106,.3);border-color:rgba(212,180,106,.62)}
+.campaign-banner{box-shadow:0 14px 38px rgba(6,17,31,.3)}
+
+/* 入力フォーム・LINE帯・パスポートの陰影 */
+.entry-form,.admin-panel{box-shadow:0 22px 60px rgba(6,17,31,.14)}
+.passport{box-shadow:0 26px 74px rgba(6,17,31,.42)}
+.sc-logo{height:64px;width:auto;display:block;margin:0 auto 18px;filter:drop-shadow(0 4px 18px rgba(212,180,106,.45))}
+
+/* ============ さらに高級感 v7 ============ */
+/* 体験の流れ：番号＋ラベルで整然と */
+.hero-lower{grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid rgba(212,180,106,.42);
+  border-radius:14px;overflow:hidden;background:rgba(212,180,106,.3);box-shadow:0 16px 44px rgba(6,17,31,.4)}
+.hero-lower span{flex-direction:column;gap:7px;min-height:92px;display:flex;align-items:center;justify-content:center;
+  padding:18px 12px;background:rgba(8,16,30,.7);font-size:.94rem;line-height:1.45;color:#ece8db;text-align:center;
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif;letter-spacing:.04em}
+.hero-lower span b{font-family:"Hiragino Sans","Yu Gothic",sans-serif;font-size:.58rem;letter-spacing:.32em;
+  color:var(--gold-300);font-weight:700}
+@media(max-width:560px){.hero-lower span{min-height:80px;font-size:.86rem}}
+@media(max-width:480px){.hero-lower{grid-template-columns:repeat(2,1fr)}}
+
+/* 全体の上質感：字間・夜の深み */
+.hero-screen{background:#05101d}
+h1{letter-spacing:.05em}
+.top-nav button{letter-spacing:.06em}
+.soul-code-display{letter-spacing:.1em}
+.hero-lead{color:rgba(255,255,255,.92)}
+.hero-copy{color:rgba(255,255,255,.72);letter-spacing:.02em}
+/* セクション見出しの上に金の小ライン */
+.section-heading .eyebrow{position:relative;display:inline-block}
+/* カード角のやわらかな内側ハイライト */
+.sc-result,.offer-card,.passport,.entry-form{border-radius:14px}
+
+/* ===================== COSMIC THEME（案C・全体適用）v8 ===================== */
+body{color:#eaf0ff;
+  background:
+   radial-gradient(820px 520px at 80% 6%,rgba(70,200,210,.16),transparent 58%),
+   radial-gradient(720px 560px at 14% 84%,rgba(150,90,220,.20),transparent 58%),
+   radial-gradient(1200px 820px at 50% 42%,rgba(40,70,160,.20),transparent 72%),
+   linear-gradient(180deg,#040a22,#0a1640 55%,#04081c) !important;
+  background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+   radial-gradient(1px 1px at 18px 22px,#fff,transparent),
+   radial-gradient(1px 1px at 64px 58px,#dcebff,transparent),
+   radial-gradient(1.4px 1.4px at 110px 30px,#fff,transparent),
+   radial-gradient(1px 1px at 150px 96px,#fff,transparent),
+   radial-gradient(1.2px 1.2px at 40px 120px,#cfe0ff,transparent),
+   radial-gradient(1px 1px at 95px 150px,#fff,transparent),
+   radial-gradient(1.5px 1.5px at 170px 160px,#fff,transparent),
+   radial-gradient(1px 1px at 130px 190px,#bfe0ff,transparent);
+  background-repeat:repeat;background-size:190px 210px;opacity:.5}
+body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+   radial-gradient(2px 2px at 60px 80px,#fff,transparent),
+   radial-gradient(2.4px 2.4px at 220px 40px,#eaf3ff,transparent),
+   radial-gradient(2px 2px at 300px 220px,#fff,transparent),
+   radial-gradient(2.2px 2.2px at 360px 150px,#fff,transparent);
+  background-repeat:repeat;background-size:420px 380px;opacity:.6;
+  filter:drop-shadow(0 0 5px rgba(180,220,255,.7))}
+.site-shell{position:relative;z-index:1}
+.screen,.hero-screen{background:transparent !important}
+.hero-visual{display:none !important}
+.hero-screen.is-active::after{z-index:0;
+  background:radial-gradient(540px 540px at 50% 30%,rgba(120,180,255,.18),rgba(120,90,220,.10) 45%,transparent 66%) !important}
+
+/* 背景上のテキストを明るく */
+h2{color:#f5f1e6 !important}
+.section-heading p:not(.eyebrow){color:rgba(220,228,255,.78) !important}
+.award-panel h2,#generating-title{color:#f5f1e6 !important}
+.award-panel p,.award-message,.generating-screen p{color:rgba(220,228,255,.82) !important}
+
+/* ボタン：金＋宇宙の発光 */
+.primary-action{box-shadow:0 12px 40px rgba(140,180,255,.3),0 0 26px rgba(212,180,106,.4),inset 0 1px 0 rgba(255,255,255,.5) !important}
+
+/* カードをダークグラスに */
+.entry-form,.admin-panel,.offer-card,.line-band,.campaign-banner{
+  background:linear-gradient(165deg,rgba(14,26,64,.74),rgba(8,14,40,.74)) !important;
+  border:1px solid rgba(140,180,255,.28) !important;
+  box-shadow:0 24px 70px rgba(2,8,28,.5) !important;backdrop-filter:blur(8px)}
+.offer-card.featured{border-color:rgba(212,180,106,.55) !important}
+.offer-card h3,.line-band h3{color:#f3efe4 !important}
+.offer-card p:not(.offer-kicker),.line-band p:not(.eyebrow){color:rgba(212,222,255,.78) !important}
+.offer-kicker{color:#9fe2ef !important}.offers-note{color:rgba(200,210,245,.6) !important}
+.price-now{color:#f0d99a !important}.price-old{color:rgba(200,210,245,.5) !important}
+.campaign-banner p{color:#f0e3bf !important}
+
+/* フォーム入力 */
+.field span,.date-grid legend,.check-field span{color:#dfe6ff !important}
+.field small{color:rgba(200,210,245,.62) !important}
+.field input,.field select,.field textarea,.admin-panel textarea{
+  background:rgba(255,255,255,.07) !important;color:#f6f7ff !important;
+  border:1px solid rgba(140,180,255,.32) !important}
+.field input::placeholder{color:rgba(210,220,255,.4)}
+.form-error{color:#ffb4b4 !important}
+
+/* 結果カード・コードの宇宙発光 */
+.soul-code-display{text-shadow:0 0 26px rgba(140,190,255,.6) !important}
+.passport{box-shadow:0 26px 74px rgba(2,8,28,.55) !important}
+
+/* ===== ヒーローを案Cモック構図に（中央寄せ＋ロゴ＋光輪）v9 ===== */
+.hero-centered{max-width:760px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center}
+.hero-logo{height:clamp(118px,15vw,166px);width:auto;margin:0 auto 6px;
+  filter:drop-shadow(0 0 36px rgba(130,200,255,.55))}
+.hero-centered h1{max-width:none;text-align:center}
+.hero-centered .hero-copy{max-width:560px;margin-left:auto;margin-right:auto}
+.hero-centered .primary-action{align-self:center}
+.hero-screen.is-active::after{
+  background:radial-gradient(520px 520px at 50% 26%,rgba(130,190,255,.20),rgba(120,90,220,.10) 46%,transparent 64%)!important}
+
+/* ヒーロー説明文を1行に収める v10 */
+.hero-centered .hero-copy{max-width:780px}
+@media(max-width:760px){.hero-centered .hero-copy{max-width:560px}}
+
+/* 実用ガイド v12 */
+.sc-practical{margin-top:30px;text-align:left}
+.pc{display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px solid rgba(212,180,106,.16)}
+.pc-ic{flex:none;font-size:16px;width:24px;text-align:center}
+.pc-l{flex:none;width:140px;font-family:"Hiragino Kaku Gothic ProN",sans-serif;font-size:13px;color:#cdbb83}
+.pc-v{flex:1;font-size:14.5px;color:#eef1ff}
+@media(max-width:480px){.pc-l{width:96px;font-size:12px}.pc-v{font-size:13px}}
+
+/* 完全版鑑定書 v13 */
+.fr-wrap{text-align:left}
+.fr-h{margin-top:30px}
+.fr-p{font-size:15px;line-height:2;color:#e7ecff;margin:0 0 12px}
+.fr-core{margin-bottom:18px}
+.fr-core h4{display:flex;justify-content:space-between;align-items:baseline;font-size:15px;color:#f0d99a;font-weight:700;margin:0 0 6px}
+.fr-core h4 span{font-family:"Hiragino Mincho ProN",serif;font-size:18px;color:#9fe2ef}
+.fr-core p{font-size:14px;line-height:1.95;color:#d6deff;margin:0}
+.fr-core b{color:#fff}
+.fr-mission{margin-top:26px;background:rgba(255,255,255,.04);border:1px solid rgba(212,180,106,.3);border-left:4px solid #d4b46a;border-radius:10px;padding:22px 26px}
+.fr-mission-jp{font-size:17px;line-height:1.95;color:#fff;margin:0}
+.fr-mission-en{font-size:13px;color:#9aa2bc;font-style:italic;margin:10px 0 0}
+.fr-mini{font-size:14px;line-height:2;color:#e7ecff}
+.fr-msg{margin-top:30px;background:linear-gradient(165deg,rgba(20,30,70,.7),rgba(10,16,44,.7));border:1px solid rgba(212,180,106,.3);border-radius:12px;padding:30px;text-align:center;font-size:15.5px;line-height:2.05;color:#eef1ff}
+.fr-msg-big{display:block;margin-top:16px;font-size:21px;color:#f0d99a;font-family:"Hiragino Mincho ProN",serif}

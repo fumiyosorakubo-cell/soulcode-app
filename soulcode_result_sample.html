@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Soul Code Result（新フレームワーク・サンプル）</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Outfit:wght@300;400;500;600&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0a0e1a;display:flex;justify-content:center;padding:46px 0;font-family:"Outfit","Hiragino Kaku Gothic ProN",sans-serif}
+  .card{position:relative;width:780px;border-radius:22px;overflow:hidden;color:#f3efe4;
+    background:radial-gradient(circle at 82% 8%,rgba(214,180,106,.18),transparent 46%),linear-gradient(160deg,#0c1230,#19224a 58%,#241f44);
+    border:1px solid rgba(212,180,106,.4);box-shadow:0 30px 90px rgba(0,0,0,.55)}
+  .pad{padding:54px 58px}
+  .center{text-align:center}
+  .eyebrow{font-size:12px;letter-spacing:.46em;color:#cdbb83;font-weight:500}
+  /* 唯一無二バナー */
+  .unique{display:inline-block;margin:0 auto 18px;padding:6px 20px;border:1px solid rgba(212,180,106,.5);border-radius:999px;font-size:12px;letter-spacing:.34em;color:#e7d49a}
+  .code{font-family:"Cormorant Garamond",serif;font-size:52px;font-weight:600;letter-spacing:.1em;color:#fff;line-height:1.1}
+  .code b{color:#e7d49a}
+  .sub{font-size:12.5px;color:#9aa2bc;letter-spacing:.06em;margin-top:12px}
+  .rule{height:1px;background:rgba(212,180,106,.4);margin:34px 0}
+  /* 5コア */
+  .cores{display:grid;grid-template-columns:1fr 1fr;gap:14px 30px}
+  .core{display:flex;align-items:center;gap:14px}
+  .core .badge{flex:none;width:42px;height:42px;border-radius:11px;border:1px solid rgba(212,180,106,.45);display:flex;align-items:center;justify-content:center;font-family:"Cormorant Garamond",serif;font-size:22px;color:#e7d49a;font-weight:600}
+  .core .body{flex:1}
+  .core .nm{font-size:14px;color:#f3efe4}.core .nm small{color:#9aa2bc;letter-spacing:.2em;font-size:10px;margin-left:6px}
+  .core .track{height:7px;background:rgba(255,255,255,.1);border-radius:5px;margin-top:5px;overflow:hidden}
+  .core .fill{height:100%;background:linear-gradient(90deg,#b9933f,#e7d49a);border-radius:5px}
+  .core .v{font-family:"Cormorant Garamond",serif;font-size:18px;color:#e7d49a;width:30px;text-align:right}
+  /* 称号 */
+  .title-en{font-size:13px;letter-spacing:.4em;color:#d4b46a}
+  .title-jp{font-family:"Cormorant Garamond","Hiragino Mincho ProN",serif;font-size:36px;font-weight:600;margin-top:8px;letter-spacing:.06em}
+  /* 魂の使命 */
+  .mission{background:rgba(255,255,255,.04);border:1px solid rgba(212,180,106,.3);border-left:4px solid #d4b46a;border-radius:10px;padding:26px 30px;margin-top:8px}
+  .mission .lbl{font-size:11px;letter-spacing:.4em;color:#cdbb83;margin-bottom:12px}
+  .mission p{font-size:17px;line-height:2;color:#f3efe4}
+  .mission .en{font-size:13.5px;color:#9aa2bc;line-height:1.85;margin-top:12px;font-style:italic}
+  .brand{margin-top:34px;font-size:11px;letter-spacing:.32em;color:#7e8095}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="pad center">
+      <p class="eyebrow">S O U L &nbsp; C O D E</p>
+      <div style="margin-top:18px"></div>
+      <div class="unique">ONE OF A KIND ・ 唯一無二</div>
+      <div class="code">SOUL CODE <b>D8·L7·S6·C5·B4</b></div>
+      <p class="sub">古代の叡智と最新の分析学から導いた、あなただけの固有コード<br>This exact signature exists in no one else.</p>
+    </div>
+
+    <div class="pad" style="padding-top:0">
+      <div class="rule"></div>
+      <p class="eyebrow center" style="margin-bottom:22px">FIVE SOUL CORES ・ 5つのソウルコア</p>
+      <div class="cores">
+        <div class="core"><div class="badge">D</div><div class="body"><div class="nm">DEEP <small>淵 ・ 探究と洞察</small></div><div class="track"><div class="fill" style="width:82%"></div></div></div><div class="v">82</div></div>
+        <div class="core"><div class="badge">L</div><div class="body"><div class="nm">LUMEN <small>灯 ・ 表現と発信</small></div><div class="track"><div class="fill" style="width:74%"></div></div></div><div class="v">74</div></div>
+        <div class="core"><div class="badge">S</div><div class="body"><div class="nm">SOAR <small>翔 ・ 自由と知性</small></div><div class="track"><div class="fill" style="width:66%"></div></div></div><div class="v">66</div></div>
+        <div class="core"><div class="badge">C</div><div class="body"><div class="nm">CORE <small>核 ・ 意志と決断</small></div><div class="track"><div class="fill" style="width:58%"></div></div></div><div class="v">58</div></div>
+        <div class="core"><div class="badge">B</div><div class="body"><div class="nm">BOND <small>環 ・ 調和と共感</small></div><div class="track"><div class="fill" style="width:48%"></div></div></div><div class="v">48</div></div>
+      </div>
+
+      <div class="rule"></div>
+      <div class="center">
+        <p class="title-en">THE ILLUMINATING SAGE</p>
+        <p class="title-jp">叡智を灯す者</p>
+      </div>
+
+      <div class="mission" style="margin-top:26px">
+        <p class="lbl">YOUR SOUL MISSION ・ 魂の使命</p>
+        <p>深く探究して掴んだ本質を、<br>人に照らし、伝え、分かち合うこと。</p>
+        <p class="en">To explore the depths, then illuminate and share the essence you find — lighting the way for others.</p>
+      </div>
+
+      <p class="brand center">SOUL CODE ・ Fumiyo Sorakubo</p>
+    </div>
+  </div>
+</body>
+</html>

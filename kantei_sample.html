@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ソウルコード鑑定書（サンプル）</title>
+<style>
+  :root{--navy:#0a1728;--navy2:#1d3550;--gold:#b9933f;--gold2:#d4b46a;--ink:#1f2a3a;--muted:#5d6878;--paper:#fbf9f3;--line:rgba(185,147,63,.35)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;color:var(--ink);background:#e9e6dd;line-height:1.95}
+  .page{width:794px;min-height:1123px;margin:24px auto;background:var(--paper);padding:84px 72px;position:relative;box-shadow:0 10px 40px rgba(0,0,0,.12)}
+  .gfont{font-family:"Hiragino Sans","Yu Gothic",sans-serif}
+  .eyebrow{font-family:"Hiragino Sans","Yu Gothic",sans-serif;letter-spacing:.3em;font-size:13px;color:var(--gold);font-weight:700}
+  h1{font-size:42px;line-height:1.4;font-weight:600;letter-spacing:.04em;margin:18px 0}
+  h2{font-size:27px;font-weight:600;color:var(--navy);border-bottom:1px solid var(--line);padding-bottom:14px;margin:0 0 24px;letter-spacing:.03em}
+  h2 .no{color:var(--gold);font-family:"Hiragino Sans",sans-serif;margin-right:14px;font-size:22px}
+  h3{font-size:19px;color:var(--navy2);margin:26px 0 10px;font-weight:600}
+  p{font-size:16px;margin:0 0 16px;color:#34404f}
+  .lead{font-size:17px;color:var(--muted)}
+  /* 表紙 */
+  .cover{background:linear-gradient(165deg,#0a1728,#1d3550 60%,#26243f);color:#f4f1e6;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+  .cover .eyebrow{color:var(--gold2)}
+  .cover h1{color:#fff;font-size:46px}
+  .cover .name{font-size:30px;margin-top:30px;letter-spacing:.1em}
+  .cover .code{font-family:"Hiragino Sans",sans-serif;font-size:26px;color:var(--gold2);border:1px solid var(--line);border-radius:12px;padding:18px 28px;margin-top:34px;letter-spacing:.08em}
+  .cover .issued{margin-top:40px;font-size:14px;color:#b9b08c;letter-spacing:.2em}
+  .moon{width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 38% 38%,#2b2f57,#11132e);box-shadow:0 0 30px 6px rgba(212,180,106,.35);margin-bottom:30px}
+  /* コード一覧 */
+  .codes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+  .codes .item{border:1px solid var(--line);border-radius:10px;padding:16px 20px}
+  .codes .item .lbl{font-family:"Hiragino Sans",sans-serif;font-size:13px;color:var(--muted)}
+  .codes .item .val{font-size:24px;color:var(--navy);font-weight:600;margin-top:4px}
+  .mission-box{background:#fff;border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:8px;padding:26px 30px;margin:20px 0}
+  .msg{background:linear-gradient(165deg,#10253f,#1d3550);color:#f4f1e6;border-radius:10px;padding:34px 36px;text-align:center;font-size:18px;line-height:2.1}
+  .msg .big{font-size:24px;color:var(--gold2);display:block;margin-top:16px}
+  .cta{border:1px dashed var(--gold);border-radius:10px;padding:24px 28px;margin-top:24px;background:#fff}
+  .cta .price{font-size:15px;color:var(--muted)}
+  .cta .price b{font-size:22px;color:#9b6b5d}
+  .foot{position:absolute;bottom:36px;left:0;width:100%;text-align:center;font-family:"Hiragino Sans",sans-serif;font-size:12px;color:var(--muted);letter-spacing:.15em}
+  ul{margin:0 0 16px 1.2em}li{font-size:16px;margin-bottom:8px;color:#34404f}
+</style>
+</head>
+<body>
+
+<!-- 表紙 -->
+<section class="page cover">
+  <div class="moon"></div>
+  <p class="eyebrow">SOUL CODE 分析学</p>
+  <h1>あなたの<br>ソウルコード鑑定書</h1>
+  <p class="name">そらくぼ ふみよ 様</p>
+  <div class="code">魂数 5 − 人生数 9 − 金 − 未 − 西</div>
+  <p class="issued">発行日 2026.06.19</p>
+  <div class="foot">ソウルコード分析学　創始者　空久保章代</div>
+</section>
+
+<!-- 1 はじめに -->
+<section class="page">
+  <p class="eyebrow">INTRODUCTION</p>
+  <h2><span class="no">1</span>はじめに</h2>
+  <p class="lead">この鑑定書を手に取ってくださり、ありがとうございます。</p>
+  <p>ソウルコード分析学は、あなたの「名前・生年月日・出生時間・出生地」という4つの事実から、魂の傾向を5つのコードとして読み解く学問です。占いのように当たり外れを語るものではなく、古代の叡智と最新の分析技術をもとに、傾向と統計からあなたという存在を立体的に描き出します。</p>
+  <h3>この鑑定書の読み方</h3>
+  <p>まず5つのコード一つひとつを知り（3〜7章）、最後にそれらを統合して、あなただけの「魂の使命」を読み解きます（8章）。9章以降は、それを日々の人生でどう活かすかの具体的なヒントです。一度に読み切る必要はありません。折にふれて、何度も読み返してください。</p>
+  <div class="foot">— 1 —</div>
+</section>
+
+<!-- 2 5つのコード -->
+<section class="page">
+  <p class="eyebrow">YOUR FIVE CODES</p>
+  <h2><span class="no">2</span>あなたの5つのコード</h2>
+  <p>あなたのソウルコードは、次の5つの要素で構成されています。</p>
+  <div class="codes">
+    <div class="item"><div class="lbl">魂数（名前）</div><div class="val">5</div></div>
+    <div class="item"><div class="lbl">人生数（生年月日）</div><div class="val">9</div></div>
+    <div class="item"><div class="lbl">元素（生まれ年）</div><div class="val">金</div></div>
+    <div class="item"><div class="lbl">時空刻印（時間）</div><div class="val">未（ひつじ）</div></div>
+    <div class="item" style="grid-column:1/3"><div class="lbl">地球座標（出生地）</div><div class="val">西</div></div>
+  </div>
+  <p>この組み合わせは、世界にひとつだけ。同じ5つを持つ人は、ほかに存在しません。次の章から、ひとつずつ詳しく読み解いていきます。</p>
+  <div class="foot">— 2 —</div>
+</section>
+
+<!-- 8 魂の使命（クライマックスを抜粋表示） -->
+<section class="page">
+  <p class="eyebrow">YOUR SOUL MISSION</p>
+  <h2><span class="no">8</span>あなたの魂の使命</h2>
+  <p>ここまで見てきた5つのコードを重ね合わせると、あなただけの「魂の使命」が浮かび上がります。</p>
+  <div class="mission-box">
+    <h3 style="margin-top:0;color:var(--gold)">自由に動きながら（魂数5）、人々の集大成を支える（人生数9）</h3>
+    <p>変化と自由を愛する魂数5の本質に、ものごとを統合し完成へ導く人生数9のテーマ。そこへ「洗練・決断」の金のエネルギーが加わり、あなたは“多くの経験を、価値ある形に磨き上げて手渡す人”です。</p>
+    <p style="margin-bottom:0">未（ひつじ）の刻印は、その才能が「人を和ませ、調和の中で導く」という柔らかな形で現れることを示し、西の地球座標は、伝える・分かち合う力を後押しします。</p>
+  </div>
+  <p>あなたの魂の使命は、<b>自らの自由な歩みで集めた経験や知恵を、人の役に立つ形に整えて分かち合うこと</b>。あなたが動き、感じ、まとめたものは、そのまま誰かの道しるべになります。</p>
+  <div class="foot">— 8 —</div>
+</section>
+
+<!-- 13 魂からのメッセージ -->
+<section class="page">
+  <p class="eyebrow">MESSAGE</p>
+  <h2><span class="no">13</span>魂からのメッセージ</h2>
+  <div class="msg">
+    あなたは「たまたま」生まれたのではありません。<br>
+    名前も、生まれた日も、時間も、場所も——<br>
+    すべてが重なって、世界にひとつだけのコードになりました。
+    <span class="big">あなたは、かけがえのない大切な存在です。</span>
+  </div>
+  <p style="margin-top:26px">迷ったときは、この鑑定書を開いてください。あなたの中には、最初から「答え」の種が宿っています。</p>
+  <div class="foot">— 13 —</div>
+</section>
+
+<!-- 14 おわりに -->
+<section class="page">
+  <p class="eyebrow">NEXT STEP</p>
+  <h2><span class="no">14</span>おわりに</h2>
+  <p>ここまで読んでくださり、ありがとうございました。この鑑定書が、あなたが自分自身を深く知り、毎日の選択に自信を持つための「羅針盤」になればうれしいです。</p>
+  <h3>もっと深く読み解きたい方へ</h3>
+  <p>文章だけでは伝えきれない部分を、直接お話ししながら一緒に読み解く個別セッションをご用意しています。いまの悩みや迷いに、あなたのソウルコードをどう活かせるか——具体的にお伝えします。</p>
+  <div class="cta">
+    <p style="margin-bottom:8px"><b>個別セッション（オンライン60分）</b></p>
+    <p class="price" style="margin-bottom:10px"><s>¥33,000</s> → <b>¥10,000</b>（開設記念キャンペーン）</p>
+    <p style="margin-bottom:0" class="gfont">お申し込み・ご相談は公式LINEから 🌙</p>
+  </div>
+  <div class="foot">ソウルコード分析学　空久保章代</div>
+</section>
+
+</body>
+</html>

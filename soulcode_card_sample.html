@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Soul Code（スタイリッシュ版・サンプル）</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Outfit:wght@300;500;600&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0a0e1a;display:flex;flex-direction:column;gap:34px;align-items:center;padding:48px 0;font-family:"Outfit","Hiragino Kaku Gothic ProN",sans-serif}
+  .card{position:relative;width:760px;padding:64px 60px;border-radius:20px;overflow:hidden;
+    background:radial-gradient(circle at 80% 12%,rgba(214,180,106,.16),transparent 46%),linear-gradient(155deg,#0c1230 0%,#19224a 55%,#241f44 100%);
+    border:1px solid rgba(212,180,106,.4);box-shadow:0 30px 90px rgba(0,0,0,.5);color:#f3efe4;text-align:center}
+  .card::after{content:"";position:absolute;inset:14px;border:1px solid rgba(212,180,106,.18);border-radius:14px;pointer-events:none}
+  .sigil{width:64px;height:64px;margin:0 auto 26px;border-radius:50%;border:1px solid rgba(212,180,106,.5);display:flex;align-items:center;justify-content:center;
+    font-family:"Cormorant Garamond",serif;font-size:30px;color:#e7d49a;letter-spacing:.04em;background:radial-gradient(circle at 38% 34%,rgba(212,180,106,.22),transparent 70%)}
+  .eyebrow{font-size:13px;letter-spacing:.5em;color:#cdbb83;font-weight:500;margin-bottom:22px}
+  .code{font-family:"Cormorant Garamond",serif;font-size:62px;font-weight:600;letter-spacing:.12em;color:#fff;line-height:1}
+  .code .dot{color:#d4b46a;margin:0 .12em}
+  .code .el{color:#e7d49a}
+  .rule{width:90px;height:1px;background:rgba(212,180,106,.5);margin:30px auto}
+  .type-en{font-size:14px;letter-spacing:.42em;color:#d4b46a;font-weight:500}
+  .type-jp{font-family:"Cormorant Garamond","Hiragino Mincho ProN",serif;font-size:34px;font-weight:600;margin-top:10px;letter-spacing:.08em}
+  .essence{font-size:15px;color:#b9c0d6;margin-top:18px;letter-spacing:.04em;line-height:1.9}
+  .meta{display:flex;justify-content:center;gap:30px;margin-top:34px;font-size:12.5px;letter-spacing:.18em;color:#8b93ad}
+  .meta b{color:#e7d49a;font-weight:500}
+  .brand{margin-top:38px;font-size:11.5px;letter-spacing:.34em;color:#7e8095}
+  .legend{width:760px;color:#8b93ad;font-size:12.5px;line-height:1.9;letter-spacing:.03em;text-align:center}
+  .legend b{color:#cdbb83;font-weight:500}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="sigil">SC</div>
+    <p class="eyebrow">S O U L &nbsp; C O D E</p>
+    <div class="code">SC<span class="dot">·</span>57<span class="dot">·</span><span class="el">Au</span><span class="dot">·</span>W<span class="dot">·</span>08</div>
+    <div class="rule"></div>
+    <p class="type-en">THE RESONANT SAGE</p>
+    <p class="type-jp">探究と伝達の賢者</p>
+    <p class="essence">自由に探究し、磨いた本質を、やわらかく分かち合う人。</p>
+    <div class="meta"><span>BALANCE <b>72</b></span><span>CORE <b>探究・発信</b></span><span>ELEMENT <b>Au / 金</b></span></div>
+    <div class="brand">SOUL CODE 分析学　|　Fumiyo Sorakubo</div>
+  </div>
+
+  <p class="legend">
+    コードの意味 ：　<b>57</b> 数秘（魂数5・人生数7）　／　<b>Au</b> 元素＝金（gold）　／　<b>W</b> 方位＝西　／　<b>08</b> 時柱＝未（12分割の8）<br>
+    ＝ 4つのデータを6系統で分析して導いた、世界にひとつの固有コード
+  </p>
+</body>
+</html>
