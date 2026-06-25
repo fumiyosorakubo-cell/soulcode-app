@@ -1550,3 +1550,40 @@ html::before{animation:nebulaDrift 40s ease-in-out infinite alternate, nebulaHue
 @media (prefers-reduced-motion: reduce){
   .cosmic-fx{display:none}
 }
+
+/* ===== STEPバーを華やかに (v30) ===== */
+.hero-lower{
+  grid-template-columns:repeat(4,1fr) !important;gap:16px !important;
+  border:none !important;background:transparent !important;box-shadow:none !important;
+  overflow:visible !important;border-radius:0 !important;margin-top:30px}
+.hero-lower span{
+  position:relative;flex-direction:column !important;gap:10px !important;min-height:148px !important;
+  padding:30px 14px 22px !important;border-radius:18px !important;
+  background:linear-gradient(170deg,rgba(40,52,92,.55),rgba(10,18,34,.75)) !important;
+  border:1px solid rgba(212,180,106,.38) !important;
+  box-shadow:0 16px 44px rgba(6,17,31,.5),inset 0 1px 0 rgba(255,255,255,.07) !important;
+  backdrop-filter:blur(9px);
+  transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+/* 上辺の金ライン */
+.hero-lower span::after{content:"";position:absolute;top:0;left:16%;right:16%;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,rgba(246,230,176,.95),transparent)}
+/* 金の宝石章 */
+.hero-lower span::before{content:"✦";display:flex;align-items:center;justify-content:center;
+  width:48px;height:48px;border-radius:50%;margin-bottom:4px;font-size:1.15rem;color:#1a1206;
+  background:radial-gradient(circle at 35% 30%,#fbeec2,#d4b46a 55%,#b9933f);
+  box-shadow:0 0 0 4px rgba(212,180,106,.16),0 6px 20px rgba(212,180,106,.55);
+  animation:stepGem 4s ease-in-out infinite}
+.hero-lower span:nth-child(2)::before{animation-delay:1s}
+.hero-lower span:nth-child(3)::before{animation-delay:2s}
+.hero-lower span:nth-child(4)::before{animation-delay:3s}
+@keyframes stepGem{0%,100%{box-shadow:0 0 0 4px rgba(212,180,106,.14),0 6px 20px rgba(212,180,106,.45)}
+  50%{box-shadow:0 0 0 5px rgba(212,180,106,.26),0 8px 30px rgba(246,230,176,.85)}}
+/* STEPラベルを金グラデ文字 */
+.hero-lower span b{
+  background:linear-gradient(90deg,#fbeec2,#d4b46a) !important;-webkit-background-clip:text;background-clip:text;
+  color:transparent !important;font-size:.6rem !important;letter-spacing:.36em !important;font-weight:700 !important}
+.hero-lower span:hover{transform:translateY(-7px);
+  border-color:rgba(246,230,176,.75) !important;
+  box-shadow:0 26px 60px rgba(6,17,31,.62),0 0 34px rgba(212,180,106,.3) !important}
+@media(max-width:480px){.hero-lower{grid-template-columns:repeat(2,1fr) !important;gap:12px !important}}
+@media (prefers-reduced-motion: reduce){.hero-lower span::before{animation:none}}
