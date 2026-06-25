@@ -1587,3 +1587,23 @@ html::before{animation:nebulaDrift 40s ease-in-out infinite alternate, nebulaHue
   box-shadow:0 26px 60px rgba(6,17,31,.62),0 0 34px rgba(212,180,106,.3) !important}
 @media(max-width:480px){.hero-lower{grid-template-columns:repeat(2,1fr) !important;gap:12px !important}}
 @media (prefers-reduced-motion: reduce){.hero-lower span::before{animation:none}}
+
+/* ===== STEPをカッコよく：大きな金ナンバー (v31) ===== */
+.hero-lower{counter-reset:step}
+.hero-lower span{counter-increment:step;justify-content:flex-start !important;gap:6px !important;padding-top:26px !important}
+/* 光る玉をやめ、大きな金グラデのナンバーに */
+.hero-lower span::before{
+  content:counter(step,decimal-leading-zero) !important;
+  width:auto !important;height:auto !important;border-radius:0 !important;margin:0 0 2px !important;
+  background:linear-gradient(180deg,#fbeec2,#e7cd86 55%,#b9933f) !important;
+  -webkit-background-clip:text !important;background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;color:transparent !important;
+  font-family:"Hiragino Mincho ProN","Yu Mincho",serif !important;
+  font-size:2.5rem !important;font-weight:600 !important;line-height:1 !important;letter-spacing:.02em;
+  box-shadow:none !important;filter:drop-shadow(0 3px 10px rgba(212,180,106,.45));
+  animation:none !important}
+/* 「STEP 01」テキストは大ナンバーと重複するため非表示 */
+.hero-lower span b{display:none !important}
+/* ナンバー下の細い金ライン */
+.hero-lower span > i.stepline{display:block;width:30px;height:2px;border-radius:2px;margin:2px auto 4px;
+  background:linear-gradient(90deg,transparent,#d4b46a,transparent)}
