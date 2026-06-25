@@ -1368,3 +1368,6 @@ h2{color:#f5f1e6 !important}
 .gi{width:20px;height:20px;fill:none;stroke:#e7d49a;stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round;
   filter:drop-shadow(0 0 6px rgba(212,180,106,.55));display:block}
 .pc-ic{display:inline-flex;align-items:center;justify-content:center;width:26px}
+
+/* SOUL CODE を中央揃え v19 */
+.soul-code-display{display:block;width:100%;text-align:center !important;margin-left:auto;margin-right:auto}
