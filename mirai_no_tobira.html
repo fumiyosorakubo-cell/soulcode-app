@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>未来の扉 Soul Code分析の書｜そらくぼ ふみよ 様</title>
+<style>
+  :root{--navy:#0a1728;--navy2:#1d3550;--gold:#b9933f;--gold2:#d4b46a;--ink:#1f2a3a;--muted:#5d6878;--paper:#fbf9f3;--line:rgba(185,147,63,.35)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:var(--ink);background:#e9e6dd;line-height:1.95}
+  .page{width:820px;min-height:1160px;margin:24px auto;background:var(--paper);padding:78px 70px;position:relative;box-shadow:0 10px 40px rgba(0,0,0,.12);page-break-after:always}
+  .min{font-family:"Hiragino Mincho ProN","Yu Mincho",serif}
+  .eyebrow{font-family:inherit;letter-spacing:.34em;font-size:12px;color:var(--gold);font-weight:700}
+  h1{font-family:"Hiragino Mincho ProN",serif;font-size:40px;line-height:1.4;font-weight:600;letter-spacing:.04em;margin:16px 0}
+  h2{font-family:"Hiragino Mincho ProN",serif;font-size:25px;font-weight:600;color:var(--navy);border-bottom:1px solid var(--line);padding-bottom:13px;margin:0 0 22px;letter-spacing:.03em}
+  h2 .no{color:var(--gold);margin-right:14px;font-size:20px}
+  h3{font-size:18px;color:var(--navy2);margin:24px 0 8px;font-weight:700}
+  p{font-size:15.5px;margin:0 0 15px;color:#34404f}
+  .lead{font-size:17px;color:var(--muted)}
+  .cover{background:linear-gradient(165deg,#0a1728,#1d3550 60%,#26243f);color:#f4f1e6;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+  .cover .eyebrow{color:var(--gold2)}
+  .cover h1{color:#fff;font-size:46px}
+  .cover .name{font-size:22px;margin-top:26px;letter-spacing:.1em;color:#fff}
+  .cover .code{font-family:"Hiragino Mincho ProN",serif;font-size:34px;letter-spacing:.12em;color:#fff;margin-top:26px}
+  .cover .code b{color:var(--gold2)}
+  .cover .period{margin-top:24px;font-size:15px;letter-spacing:.16em;color:#e9e0c4}
+  .cover .period b{color:var(--gold2);font-size:18px}
+  .cover .uniq{margin-top:28px;font-size:12px;letter-spacing:.3em;color:#c7bf9d;border:1px solid var(--line);border-radius:999px;padding:8px 22px}
+  .cover .issued{margin-top:24px;font-size:13px;color:#b9b08c;letter-spacing:.2em}
+  .box{background:#fff;border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:8px;padding:24px 28px;margin:18px 0}
+  .flow{background:linear-gradient(165deg,#10253f,#1d3550);color:#f4f1e6;border-radius:10px;padding:30px 32px;margin:18px 0}
+  .flow .eyebrow{color:var(--gold2)}
+  .flow p{color:#e6e0d0}
+  .flow .keyword{font-family:"Hiragino Mincho ProN",serif;font-size:22px;color:var(--gold2);letter-spacing:.08em;margin:8px 0 4px}
+  /* 月ごとのカード */
+  .month{border:1px solid var(--line);border-radius:12px;padding:0;margin:22px 0;overflow:hidden;background:#fff}
+  .month .head{background:linear-gradient(120deg,#1d3550,#26243f);color:#fff;padding:18px 26px;display:flex;align-items:baseline;gap:16px}
+  .month .head .m{font-family:"Hiragino Mincho ProN",serif;font-size:26px;color:var(--gold2);letter-spacing:.06em}
+  .month .head .t{font-size:16px;color:#f4f1e6;font-weight:700}
+  .month .head .sub{margin-left:auto;font-size:12px;letter-spacing:.2em;color:#c7bf9d}
+  .month .body{padding:22px 28px}
+  .month .body p{margin-bottom:12px}
+  .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;padding:4px 12px;border-radius:999px;margin:0 8px 8px 0}
+  .tag.up{background:#f1e7cf;color:#8a6a1f}
+  .tag.care{background:#efe3df;color:#9b6b5d}
+  .tag.do{background:#e3ebe6;color:#3d6b54}
+  .label{font-size:13px;font-weight:700;color:var(--gold);letter-spacing:.08em;margin:14px 0 4px}
+  .keys{counter-reset:k;margin:18px 0}
+  .keys .k{display:flex;gap:16px;align-items:flex-start;margin-bottom:16px}
+  .keys .k .n{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font-family:"Hiragino Mincho ProN",serif;font-size:17px;display:flex;align-items:center;justify-content:center}
+  .keys .k .tx b{color:var(--navy);font-size:15.5px}
+  .lucky{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+  .lucky .it{border:1px solid var(--line);border-radius:8px;padding:16px 20px;background:#fff}
+  .lucky .it .h{font-size:12px;color:var(--gold);letter-spacing:.1em;font-weight:700;margin-bottom:6px}
+  .lucky .it .v{font-size:16px;color:var(--navy);font-weight:700}
+  .msg{background:linear-gradient(165deg,#10253f,#1d3550);color:#f4f1e6;border-radius:10px;padding:32px 34px;text-align:center;font-size:17px;line-height:2.1}
+  .msg .big{font-size:23px;color:var(--gold2);display:block;margin-top:16px}
+  .cta{border:1px dashed var(--gold);border-radius:10px;padding:22px 26px;margin-top:22px;background:#fff}
+  .cta .price b{font-size:21px;color:#9b6b5d}
+  ul{margin:0 0 15px 1.2em}li{font-size:15.5px;margin-bottom:8px;color:#34404f}
+  .foot{position:absolute;bottom:34px;left:0;width:100%;text-align:center;font-size:12px;color:var(--muted);letter-spacing:.14em}
+</style>
+</head>
+<body>
+
+<!-- 表紙 -->
+<section class="page cover">
+  <img src="assets/logo-mark.png" alt="ソウルコード分析学" style="width:170px;height:auto;margin-bottom:22px;filter:drop-shadow(0 6px 24px rgba(212,180,106,.5))" />
+  <p class="eyebrow">SOUL CODE ・ FUTURE GATE</p>
+  <h1>未来の扉<br><span style="font-size:26px;color:#e9e0c4">Soul Code 分析の書</span></h1>
+  <p class="name">そらくぼ ふみよ 様</p>
+  <div class="code">SOUL CODE <b>S9·C6·L5·D4·B4</b></div>
+  <p class="period">対象期間　<b>2026年 7月 → 9月</b>（これから3ヶ月）</p>
+  <p class="uniq">OPEN YOUR NEXT GATE ・ これから3ヶ月の扉をひらく</p>
+  <p class="issued">鑑定日時　2026.06.25　11:00</p>
+  <div class="foot">ソウルコードリサーチャー　Fumiyo Sorakubo</div>
+</section>
+
+<!-- 1 はじめに -->
+<section class="page">
+  <p class="eyebrow">INTRODUCTION</p>
+  <h2><span class="no">1</span>はじめに ― 未来の扉とは</h2>
+  <p class="lead">この一冊を手に取ってくださり、ありがとうございます。</p>
+  <p>「未来の扉」は、あなたの変わらない<b>Soul Code（魂の設計図）</b>に、<b>鑑定したこの日・この時間が持つエネルギーの流れ</b>を重ね合わせて、これから3ヶ月にひらいていく〝扉〟を読み解く分析の書です。</p>
+  <p>あなたという存在の核は一生変わりません。けれど、その核がどんな追い風を受け、どんなテーマに向き合う時期に入っているかは、時とともに移り変わっていきます。この書は、占いのように未来を決めつけるものではなく、<b>「いま、どの扉が開きやすいか」</b>を知り、あなた自身の選択をうしろから照らすための羅針盤です。</p>
+  <p>あなたのソウルコードは <b>S9·C6·L5·D4·B4</b>。この並びを持つ人は世界にあなたしかいません。これから3ヶ月、その固有のコードが今期のエネルギーとどう響き合うのかを、一つずつひらいていきます。</p>
+  <div class="foot">— 1 —</div>
+</section>
+
+<!-- 2 Soul Code基盤 -->
+<section class="page">
+  <p class="eyebrow">YOUR FOUNDATION</p>
+  <h2><span class="no">2</span>あなたという、変わらない核</h2>
+  <p>未来を読み解く前に、すべての土台となるあなたの核を確認します。3ヶ月の流れは、この核の上を流れていきます。</p>
+  <div class="box">
+    <h3 style="margin-top:0;color:var(--gold)">S9 SOAR ― 自由と知性（あなたの主軸）</h3>
+    <p style="margin-bottom:0">枠にとらわれず、新しい発想で軽やかに道を切りひらく力。あなたの人生は「自由に動けているか」で輝きが大きく変わります。今期も、この力をどれだけ解き放てるかが鍵になります。</p>
+  </div>
+  <div class="box" style="border-left-color:var(--navy2)">
+    <h3 style="margin-top:0;color:var(--navy2)">C6 CORE ― 意志と決断（あなたを支える芯）</h3>
+    <p style="margin-bottom:0">決めたことを形にやり切る芯の強さ。自由な発想（S）を、絵に描いた餅で終わらせず現実にする力です。今期はこの2つが手を組むほど、扉が大きくひらきます。</p>
+  </div>
+  <p>そして <b>L5 表現・D4 探究・B4 調和</b> が、あなたを多面的に彩ります。この3ヶ月は、特に <b>S（自由）×C（意志）</b> の組み合わせが時期のエネルギーと強く共鳴していきます。</p>
+  <div class="foot">— 2 —</div>
+</section>
+
+<!-- 3 今期のエネルギーの流れ -->
+<section class="page">
+  <p class="eyebrow">THE FLOW OF THIS SEASON</p>
+  <h2><span class="no">3</span>今期、あなたに流れるエネルギー</h2>
+  <p>鑑定したこの日・この時間の星の配置、季節の巡り、そしてあなたのコードを統合して導いた、この3ヶ月全体に流れる大きなテーマです。</p>
+  <div class="flow">
+    <p class="eyebrow">3ヶ月のテーマ</p>
+    <p class="keyword">「ひらく ― 自分の道を、外へ示す季節」</p>
+    <p style="margin-bottom:0">今期のあなたには、これまで内側で温めてきたものを<b>外の世界へ差し出していく</b>追い風が吹いています。準備が整い、動けば動くほど道が見えてくる「展開」の時期です。立ち止まって守るより、半歩でも前に踏み出すことで、新しい扉が次々とひらいていきます。</p>
+  </div>
+  <p>この3ヶ月は、ゆるやかに「<b>整える → 動く → 形にする</b>」という波で進んでいきます。次のページから、1ヶ月ごとにその扉を読み解いていきます。あせる必要はありません。波に合わせて進むことが、いちばんの近道です。</p>
+  <div class="foot">— 3 —</div>
+</section>
+
+<!-- 4 月ごとの扉 -->
+<section class="page">
+  <p class="eyebrow">MONTH BY MONTH</p>
+  <h2><span class="no">4</span>3ヶ月の扉を、ひと月ずつ</h2>
+
+  <div class="month">
+    <div class="head"><span class="m">1st</span><span class="t">最初の扉 ― 整えて、土台をつくる</span><span class="sub">2026年 7月</span></div>
+    <div class="body">
+      <p>動き出す前に、足元を整える月。新しいことに飛び込むより、<b>環境・人間関係・持ち物を軽くする</b>ことで、後半の追い風を受け取る準備が整います。あなたのS（自由）が、不要なものを手放すほど大きく動けるようになります。</p>
+      <p class="label">▲ 追い風</p>
+      <span class="tag up">情報・学び</span><span class="tag up">出会いの種まき</span><span class="tag up">身辺整理</span>
+      <p class="label">▽ 気をつけること</p>
+      <span class="tag care">一気にやろうと焦る</span><span class="tag care">人の予定に流される</span>
+      <p class="label">◎ おすすめの行動</p>
+      <span class="tag do">やりたいことを書き出す</span><span class="tag do">部屋・スマホを片づける</span><span class="tag do">気になる人へ連絡</span>
+    </div>
+  </div>
+
+  <div class="month">
+    <div class="head"><span class="m">2nd</span><span class="t">真ん中の扉 ― 動いて、外へ示す</span><span class="sub">2026年 8月</span></div>
+    <div class="body">
+      <p>今期の<b>いちばんの追い風が吹く月</b>。整えた土台の上で、思い切って動くほど結果がついてきます。あなたのS×Cが最も噛み合い、「やってみたい」を「やってみた」に変える絶好のタイミング。発信・提案・新しい挑戦が実を結びやすい時期です。</p>
+      <p class="label">▲ 追い風</p>
+      <span class="tag up">発信・表現</span><span class="tag up">新しい挑戦</span><span class="tag up">人との縁が広がる</span>
+      <p class="label">▽ 気をつけること</p>
+      <span class="tag care">抱え込みすぎ</span><span class="tag care">完璧を待ちすぎる</span>
+      <p class="label">◎ おすすめの行動</p>
+      <span class="tag do">未完成でも世に出す</span><span class="tag do">一歩踏み込んで提案</span><span class="tag do">人を巻き込む</span>
+    </div>
+  </div>
+
+  <div class="foot">— 4 —</div>
+</section>
+
+<!-- 4続き -->
+<section class="page">
+  <div class="month">
+    <div class="head"><span class="m">3rd</span><span class="t">仕上げの扉 ― 形にして、受け取る</span><span class="sub">2026年 9月</span></div>
+    <div class="body">
+      <p>動いてきたものを<b>形にして、実りを受け取る月</b>。新しく広げるより、進めてきたことを完成させ、整理することで次の3ヶ月への土台が固まります。あなたのC（意志）が活きる、「やり切る」ことで自信に変わる時期です。</p>
+      <p class="label">▲ 追い風</p>
+      <span class="tag up">完成・達成</span><span class="tag up">評価・感謝が返る</span><span class="tag up">振り返り</span>
+      <p class="label">▽ 気をつけること</p>
+      <span class="tag care">新しいことを増やしすぎる</span><span class="tag care">疲れをためる</span>
+      <p class="label">◎ おすすめの行動</p>
+      <span class="tag do">やりかけを仕上げる</span><span class="tag do">成果を記録する</span><span class="tag do">休む時間も予定に入れる</span>
+    </div>
+  </div>
+  <div class="box">
+    <h3 style="margin-top:0;color:var(--gold)">3ヶ月の流れ、ひとことで</h3>
+    <p style="margin-bottom:0"><b>7月に整え、8月に動き、9月で形にする。</b><br>この波に乗れたとき、3ヶ月後のあなたは「自分の道を、外へ示せた」という確かな手ごたえを持っているはずです。</p>
+  </div>
+  <div class="foot">— 5 —</div>
+</section>
+
+<!-- 5 扉を開く3つの鍵 -->
+<section class="page">
+  <p class="eyebrow">THREE KEYS</p>
+  <h2><span class="no">5</span>今期の扉を開く、3つの鍵</h2>
+  <p>あなたのコードと今期のエネルギーから導いた、この3ヶ月でとくに意識したい3つの鍵です。</p>
+  <div class="keys">
+    <div class="k"><span class="n">1</span><span class="tx"><b>「完璧」より「まず出す」を選ぶ。</b><br>あなたのS（自由）は、動きながら整えるほど力を発揮します。8割で世に出すことが、今期は最大の近道になります。</span></div>
+    <div class="k"><span class="n">2</span><span class="tx"><b>ひとりで抱えず、人を巻き込む。</b><br>今期は縁が広がる流れ。あなたが旗を立てると、思わぬ人が力を貸してくれます。C（意志）で決め、声に出して伝えましょう。</span></div>
+    <div class="k"><span class="n">3</span><span class="tx"><b>動いたら、必ず立ち止まって受け取る。</b><br>9月は仕上げと回復の月。やり切ったことを記録し、休むことまでが今期の成果です。次の扉は、整ったあなたにひらきます。</span></div>
+  </div>
+  <div class="foot">— 6 —</div>
+</section>
+
+<!-- 6 今期のラッキー要素 -->
+<section class="page">
+  <p class="eyebrow">YOUR LUCKY ELEMENTS</p>
+  <h2><span class="no">6</span>今期を後押しする、あなたの追い風</h2>
+  <p>この3ヶ月、あなたのコードと時期のエネルギーが響き合う、身近な「追い風」のサインです。迷ったときに、そっと取り入れてみてください。</p>
+  <div class="lucky">
+    <div class="it"><div class="h">LUCKY COLOR ・ 色</div><div class="v">白・ゴールド／空色</div></div>
+    <div class="it"><div class="h">LUCKY DAY ・ 曜日</div><div class="v">金曜日・水曜日</div></div>
+    <div class="it"><div class="h">LUCKY ACTION ・ 行動</div><div class="v">新しい場所へ出かける</div></div>
+    <div class="it"><div class="h">POWER STONE ・ 石</div><div class="v">水晶・アクアマリン</div></div>
+    <div class="it"><div class="h">KEYWORD ・ 言葉</div><div class="v">「まず、ひらく」</div></div>
+    <div class="it"><div class="h">BEST TIMING ・ 山場</div><div class="v">2026年 8月</div></div>
+  </div>
+  <div class="foot">— 7 —</div>
+</section>
+
+<!-- 7 メッセージ -->
+<section class="page">
+  <p class="eyebrow">MESSAGE</p>
+  <h2><span class="no">7</span>これからのあなたへ</h2>
+  <p>未来は、決まっているものではありません。あなたのソウルコードは「どんな扉が開きやすいか」を教えてくれますが、その扉をひらくのは、いつだってあなた自身の半歩です。</p>
+  <p>今期のあなたには、自分の道を外へ示していく追い風が吹いています。うまくいくか不安になる日もあるでしょう。それでも、あなたの中には <b>S（自由に切りひらく力）</b> と <b>C（やり切る芯）</b> が、もともと備わっています。この3ヶ月は、それを世界に向けて使うための季節です。</p>
+  <div class="msg">
+    あなたの前にある扉は、<br>あなたがひらくのを待っています。
+    <span class="big">まず、半歩。<br>その先に、新しい景色があります。</span>
+  </div>
+  <div class="foot">— 8 —</div>
+</section>
+
+<!-- 8 おわりに + CTA -->
+<section class="page">
+  <p class="eyebrow">CLOSING</p>
+  <h2><span class="no">8</span>おわりに</h2>
+  <p>「未来の扉 Soul Code分析の書」を最後まで読んでくださり、ありがとうございました。この3ヶ月が、あなたにとって自分らしい道をひらく季節になりますように。</p>
+  <p>3ヶ月が過ぎたら、また新しい扉がひらきます。次の季節のエネルギーに合わせて、いつでも次の「未来の扉」をひらきにきてください。</p>
+
+  <h3>もっと深く、一緒に読み解きたい方へ</h3>
+  <div class="cta">
+    <p style="margin-bottom:8px"><b>個別セッション（オンライン）</b></p>
+    <p class="price" style="margin-bottom:8px"><span style="text-decoration:line-through;color:#9aa3af">¥33,000</span> → <b>¥10,000</b>（開設記念）</p>
+    <p style="margin-bottom:0">あなたのソウルコードと今期の流れを、一緒に読み解く時間です。いまの迷いや願いに合わせて、3ヶ月の扉のひらき方を具体的に落とし込んでいきます。お申し込み・ご相談は公式LINEから。</p>
+  </div>
+
+  <div class="msg" style="margin-top:26px">
+    あなたは、この世界にたった一人。
+    <span class="big">唯一無二のあなたの道を、<br>これからも照らし続けます。</span>
+  </div>
+  <p style="text-align:center;margin-top:26px;letter-spacing:.1em;color:var(--muted)">ソウルコード分析学　創設者　空久保章代<br><span style="font-size:13px">Soul Code Researcher ・ Fumiyo Sorakubo</span></p>
+  <div class="foot">— 9 —</div>
+</section>
+
+</body>
+</html>
