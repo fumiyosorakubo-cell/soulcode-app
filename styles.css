@@ -1389,3 +1389,89 @@ h2{color:#f5f1e6 !important}
   transform:translateX(-2px);
 }
 .back-action:active{transform:translateX(-2px) scale(.97)}
+
+/* ===== 宇宙の動き・神秘の演出 (v27) ===== */
+/* 星のまたたき＋ゆっくり流れる（明るく） */
+body::before{
+  opacity:.62;
+  animation:twinkleA 5.5s ease-in-out infinite, starDriftA 140s linear infinite;
+  filter:drop-shadow(0 0 3px rgba(200,225,255,.55));
+}
+body::after{
+  opacity:.7;
+  animation:twinkleB 4s ease-in-out infinite, starDriftB 200s linear infinite;
+}
+@keyframes twinkleA{0%,100%{opacity:.4}50%{opacity:.72}}
+@keyframes twinkleB{0%,100%{opacity:.45}50%{opacity:.92}}
+@keyframes starDriftA{from{background-position:0 0}to{background-position:0 -210px}}
+@keyframes starDriftB{from{background-position:0 0}to{background-position:0 -380px}}
+
+/* 銀河の雲がゆっくり呼吸しながら漂う */
+html::before{
+  content:"";position:fixed;inset:-15%;z-index:0;pointer-events:none;
+  background-image:
+   radial-gradient(680px 420px at 22% 30%,rgba(150,90,220,.22),transparent 60%),
+   radial-gradient(760px 520px at 78% 68%,rgba(60,110,210,.20),transparent 62%),
+   radial-gradient(520px 520px at 60% 18%,rgba(120,80,200,.16),transparent 64%);
+  filter:blur(6px);
+  animation:nebulaDrift 60s ease-in-out infinite alternate;
+}
+@keyframes nebulaDrift{
+  0%{transform:translate3d(0,0,0) scale(1);opacity:.85}
+  50%{transform:translate3d(2.5%,-2%,0) scale(1.08);opacity:1}
+  100%{transform:translate3d(-2%,2.5%,0) scale(1.04);opacity:.9}
+}
+
+/* 流れ星 */
+html::after{
+  content:"";position:fixed;top:8%;left:90%;z-index:0;pointer-events:none;
+  width:150px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.95));
+  box-shadow:0 0 8px 1px rgba(180,220,255,.85);
+  opacity:0;transform:rotate(-22deg);
+  animation:shoot 11s ease-in infinite;
+}
+@keyframes shoot{
+  0%{opacity:0;transform:translate(0,0) rotate(-22deg)}
+  4%{opacity:1}
+  16%{opacity:1}
+  20%{opacity:0;transform:translate(-95vw,52vh) rotate(-22deg)}
+  100%{opacity:0;transform:translate(-95vw,52vh) rotate(-22deg)}
+}
+
+/* ヒーローのロゴ：ふわり浮遊＋発光の脈動 */
+.hero-logo{
+  animation:logoFloat 7s ease-in-out infinite, logoGlow 5s ease-in-out infinite;
+}
+@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes logoGlow{
+  0%,100%{filter:drop-shadow(0 0 30px rgba(130,200,255,.4)) drop-shadow(0 0 10px rgba(212,180,106,.25))}
+  50%{filter:drop-shadow(0 0 60px rgba(150,210,255,.75)) drop-shadow(0 0 22px rgba(212,180,106,.55))}
+}
+
+/* 結果カード・鑑定書の紋章もやわらかく発光 */
+.sc-logo{animation:markGlow 5.5s ease-in-out infinite}
+@keyframes markGlow{
+  0%,100%{filter:drop-shadow(0 0 14px rgba(130,200,255,.35))}
+  50%{filter:drop-shadow(0 0 30px rgba(150,210,255,.7))}
+}
+
+/* ヒーロー中央の光輪も呼吸 */
+.hero-screen.is-active::after{animation:haloPulse 6s ease-in-out infinite}
+@keyframes haloPulse{0%,100%{opacity:.8;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+
+/* 「ギフトを受け取る」ボタンの光がゆっくり巡る */
+.primary-action{position:relative;overflow:hidden}
+.primary-action::after{
+  content:"";position:absolute;top:0;left:-60%;width:45%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);
+  transform:skewX(-20deg);animation:sheen 4.5s ease-in-out infinite;
+}
+@keyframes sheen{0%{left:-60%}55%,100%{left:130%}}
+
+/* 動きが苦手な方への配慮 */
+@media (prefers-reduced-motion: reduce){
+  body::before,body::after,html::before,html::after,
+  .hero-logo,.sc-logo,.hero-screen.is-active::after,.primary-action::after{
+    animation:none !important}
+}
