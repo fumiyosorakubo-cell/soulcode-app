@@ -1475,3 +1475,79 @@ html::after{
   .hero-logo,.sc-logo,.hero-screen.is-active::after,.primary-action::after{
     animation:none !important}
 }
+
+/* ===== もっと派手に：宇宙の大演出 (v28) ===== */
+.cosmic-fx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+
+/* 流れ星（複数・色つき・頻繁に） */
+.cosmic-fx .shoot{position:absolute;width:190px;height:2.5px;border-radius:3px;
+  background:linear-gradient(90deg,rgba(255,255,255,0),#fff 70%,#cfe6ff);
+  box-shadow:0 0 12px 2px rgba(170,215,255,.95),0 0 26px 4px rgba(140,120,255,.5);
+  opacity:0;transform:rotate(-22deg)}
+.cosmic-fx .s1{top:6%;left:88%;animation:shootBig 6.5s ease-in 0s infinite}
+.cosmic-fx .s2{top:18%;left:96%;animation:shootBig 8s ease-in 2.4s infinite}
+.cosmic-fx .s3{top:2%;left:60%;animation:shootBig 9.5s ease-in 4.8s infinite;width:150px}
+.cosmic-fx .s4{top:30%;left:92%;animation:shootBig 7.2s ease-in 1.2s infinite;
+  background:linear-gradient(90deg,rgba(255,255,255,0),#ffe9b8 70%,#fff)}
+@keyframes shootBig{
+  0%{opacity:0;transform:translate(0,0) rotate(-22deg)}
+  3%{opacity:1}
+  14%{opacity:1}
+  20%{opacity:0;transform:translate(-105vw,55vh) rotate(-22deg)}
+  100%{opacity:0;transform:translate(-105vw,55vh) rotate(-22deg)}
+}
+
+/* 光のオーブ（オーロラ状に漂い色が変わる） */
+.cosmic-fx .orb{position:absolute;border-radius:50%;filter:blur(42px);mix-blend-mode:screen}
+.cosmic-fx .o1{width:340px;height:340px;top:-60px;left:-40px;
+  background:radial-gradient(circle,rgba(150,90,230,.55),transparent 70%);
+  animation:orbMove1 26s ease-in-out infinite, hueShift 18s linear infinite}
+.cosmic-fx .o2{width:420px;height:420px;bottom:-120px;right:-80px;
+  background:radial-gradient(circle,rgba(60,130,235,.5),transparent 70%);
+  animation:orbMove2 32s ease-in-out infinite, hueShift 22s linear infinite reverse}
+.cosmic-fx .o3{width:300px;height:300px;top:38%;left:62%;
+  background:radial-gradient(circle,rgba(220,150,255,.4),transparent 70%);
+  animation:orbMove1 38s ease-in-out infinite reverse, hueShift 26s linear infinite}
+@keyframes orbMove1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,80px) scale(1.25)}}
+@keyframes orbMove2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-80px,-60px) scale(1.3)}}
+@keyframes hueShift{from{filter:blur(42px) hue-rotate(0deg)}to{filter:blur(42px) hue-rotate(360deg)}}
+
+/* きらめく大きな星（脈動＋十字の光芒） */
+.cosmic-fx .spark{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;
+  box-shadow:0 0 10px 3px rgba(200,225,255,.95),0 0 22px 6px rgba(150,120,255,.45);
+  opacity:0;animation:sparkPulse 3.6s ease-in-out infinite}
+.cosmic-fx .spark::before,.cosmic-fx .spark::after{content:"";position:absolute;inset:0;margin:auto;
+  background:linear-gradient(currentColor,currentColor);color:rgba(220,235,255,.9)}
+.cosmic-fx .spark::before{width:1.5px;height:22px;left:1.25px;top:-9px}
+.cosmic-fx .spark::after{width:22px;height:1.5px;top:1.25px;left:-9px}
+.cosmic-fx .k1{top:14%;left:12%;animation-delay:0s}
+.cosmic-fx .k2{top:24%;left:82%;animation-delay:.6s}
+.cosmic-fx .k3{top:52%;left:8%;animation-delay:1.2s}
+.cosmic-fx .k4{top:68%;left:88%;animation-delay:1.8s}
+.cosmic-fx .k5{top:80%;left:22%;animation-delay:2.4s}
+.cosmic-fx .k6{top:40%;left:48%;animation-delay:3s}
+.cosmic-fx .k7{top:10%;left:54%;animation-delay:.9s}
+.cosmic-fx .k8{top:88%;left:64%;animation-delay:1.5s}
+@keyframes sparkPulse{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1.1)}}
+
+/* 既存の星空をさらに明るく＆速く */
+body::before{opacity:.78;animation:twinkleA 3.8s ease-in-out infinite, starDriftA 110s linear infinite}
+body::after{opacity:.9;animation:twinkleB 2.8s ease-in-out infinite, starDriftB 160s linear infinite}
+
+/* 銀河の色変化をより大胆に */
+html::before{animation:nebulaDrift 40s ease-in-out infinite alternate, nebulaHue 30s linear infinite}
+@keyframes nebulaHue{from{filter:blur(6px) hue-rotate(0deg)}to{filter:blur(6px) hue-rotate(360deg)}}
+
+/* ロゴの発光をさらに強烈に */
+@keyframes logoGlow{
+  0%,100%{filter:drop-shadow(0 0 34px rgba(130,200,255,.5)) drop-shadow(0 0 14px rgba(212,180,106,.35))}
+  50%{filter:drop-shadow(0 0 80px rgba(160,215,255,.95)) drop-shadow(0 0 34px rgba(255,215,120,.8))}
+}
+.hero-logo{animation:logoFloat 6s ease-in-out infinite, logoGlow 3.4s ease-in-out infinite}
+
+/* 中央光輪をより大きく脈動 */
+@keyframes haloPulse{0%,100%{opacity:.7;transform:scale(.96)}50%{opacity:1;transform:scale(1.15)}}
+
+@media (prefers-reduced-motion: reduce){
+  .cosmic-fx{display:none}
+}
