@@ -89,7 +89,20 @@ const defaultTemplates = {
     "Soul Code分析学は、一人ひとりが本来の自分を思い出すための人生分析プラットフォームです。\n\n#空久保章代 #SoulCode分析学",
 };
 
-let activeProfile = loadJson(STORAGE_KEYS.current, null);
+let activeProfile = sanitizeProfile(loadJson(STORAGE_KEYS.current, null));
+
+// 古いバージョンで保存された壊れたプロファイルを無効化（描画クラッシュ防止）
+function sanitizeProfile(p) {
+  if (!p || typeof p !== "object") return null;
+  const cs = p.coreScores;
+  const ok = cs && ["L", "D", "S", "B", "C"].every((k) => typeof cs[k] === "number")
+    && typeof p.soulCode === "string";
+  if (!ok) {
+    try { localStorage.removeItem(STORAGE_KEYS.current); } catch {}
+    return null;
+  }
+  return p;
+}
 let logicConfig = loadJson(STORAGE_KEYS.logic, defaultLogic);
 let copyConfig = loadJson(STORAGE_KEYS.copy, defaultCopy);
 let templates = loadJson(STORAGE_KEYS.templates, defaultTemplates);
@@ -105,28 +118,35 @@ const toast = document.querySelector("#toast");
 init();
 
 function init() {
-  applyCopy();
-  updateProfileViews();
-  hydrateAdmin();
-  bindNavigation();
-  bindForm();
-  bindPassportActions();
-  bindOfferActions();
-  bindAdmin();
-  renderTables();
+  // ナビ・フォームを最優先で登録（描画系が失敗してもボタンは必ず動く）
+  safe(bindNavigation);
+  safe(bindForm);
+  safe(applyCopy);
+  safe(updateProfileViews);
+  safe(hydrateAdmin);
+  safe(bindPassportActions);
+  safe(bindOfferActions);
+  safe(bindAdmin);
+  safe(renderTables);
+}
+
+// 1ステップが失敗してもアプリ全体を止めない
+function safe(fn) {
+  try { fn(); } catch (e) { console.error("init step failed:", fn && fn.name, e); }
 }
 
 function bindNavigation() {
-  navButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const target = button.dataset.nav;
-      if ((target === "gift" || target === "passport" || target === "offers") && !activeProfile) {
-        showScreen("form");
-        showToast("まず、あなたへのギフトを受け取るための情報を入力してください。");
-        return;
-      }
-      showScreen(target);
-    });
+  // イベント委譲：再描画や将来追加のボタンでも確実に動く（要素スナップショットに依存しない）
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-nav]");
+    if (!button) return;
+    const target = button.dataset.nav;
+    if ((target === "gift" || target === "passport" || target === "offers") && !activeProfile) {
+      showScreen("form");
+      showToast("まず、あなたへのギフトを受け取るための情報を入力してください。");
+      return;
+    }
+    showScreen(target);
   });
 }
 
@@ -751,7 +771,9 @@ function renderCores(scores) {
   return Object.entries(scores)
     .sort((a, b) => b[1] - a[1])
     .map(([k, v]) => {
-      const [en, desc] = CORE_INFO[k];
+      const info = CORE_INFO[k];
+      if (!info) return "";
+      const [en, desc] = info;
       return `<div class="core-row"><span class="core-badge">${k}</span>` +
         `<span class="core-name">${en} <small>${desc}</small></span>` +
         `<span class="core-track"><span class="core-fill" style="width:${v}%"></span></span>` +
