@@ -736,25 +736,31 @@ function showScreen(id, isBack) {
   }
   screens.forEach((screen) => screen.classList.toggle("is-active", screen.dataset.screen === id));
   window.scrollTo({ top: 0, behavior: "smooth" });
+  updateBackVisibility();
 }
 function goBack() {
   const prev = screenHistory.pop();
   showScreen(prev || "home", true);
 }
 
-// 全画面の先頭に「戻る」ボタンを生成（home・生成中は除く）
+// 「戻る」ボタンを画面左下に1つ固定（home・生成中は非表示）
+var backBtnEl = null;
 function addBackButtons() {
-  const skip = new Set(["home", "generating"]);
-  screens.forEach((screen) => {
-    if (skip.has(screen.dataset.screen)) return;
-    if (screen.querySelector(":scope > [data-back]")) return;
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "back-action";
-    btn.setAttribute("data-back", "");
-    btn.textContent = "← 戻る";
-    screen.insertBefore(btn, screen.firstChild);
-  });
+  backBtnEl = document.createElement("button");
+  backBtnEl.type = "button";
+  backBtnEl.className = "back-action back-fixed";
+  backBtnEl.setAttribute("data-back", "");
+  backBtnEl.textContent = "← 戻る";
+  document.body.appendChild(backBtnEl);
+  updateBackVisibility();
+}
+function updateBackVisibility() {
+  const btn = document.querySelector(".back-fixed");
+  if (!btn) return;
+  const cur = document.querySelector("[data-screen].is-active");
+  const id = cur ? cur.getAttribute("data-screen") : null;
+  const hide = !id || id === "home" || id === "generating";
+  btn.style.display = hide ? "none" : "inline-flex";
 }
 
 function requireProfile() {
