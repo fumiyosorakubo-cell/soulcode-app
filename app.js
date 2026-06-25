@@ -120,6 +120,7 @@ init();
 function init() {
   // ナビ・フォームを最優先で登録（描画系が失敗してもボタンは必ず動く）
   safe(bindNavigation);
+  safe(addBackButtons);
   safe(bindForm);
   safe(applyCopy);
   safe(updateProfileViews);
@@ -138,6 +139,11 @@ function safe(fn) {
 function bindNavigation() {
   // イベント委譲：再描画や将来追加のボタンでも確実に動く（要素スナップショットに依存しない）
   document.addEventListener("click", (event) => {
+    const back = event.target.closest("[data-back]");
+    if (back) {
+      goBack();
+      return;
+    }
     const button = event.target.closest("[data-nav]");
     if (!button) return;
     const target = button.dataset.nav;
@@ -721,9 +727,34 @@ function startGeneration() {
   }, 2100);
 }
 
-function showScreen(id) {
+const screenHistory = [];
+function showScreen(id, isBack) {
+  const current = screens.find((s) => s.classList.contains("is-active"));
+  const currentId = current ? current.dataset.screen : null;
+  if (!isBack && currentId && currentId !== id) {
+    screenHistory.push(currentId);
+  }
   screens.forEach((screen) => screen.classList.toggle("is-active", screen.dataset.screen === id));
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+function goBack() {
+  const prev = screenHistory.pop();
+  showScreen(prev || "home", true);
+}
+
+// 全画面の先頭に「戻る」ボタンを生成（home・生成中は除く）
+function addBackButtons() {
+  const skip = new Set(["home", "generating"]);
+  screens.forEach((screen) => {
+    if (skip.has(screen.dataset.screen)) return;
+    if (screen.querySelector(":scope > [data-back]")) return;
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "back-action";
+    btn.setAttribute("data-back", "");
+    btn.textContent = "← 戻る";
+    screen.insertBefore(btn, screen.firstChild);
+  });
 }
 
 function requireProfile() {

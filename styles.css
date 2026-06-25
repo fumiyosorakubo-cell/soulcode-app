@@ -1371,3 +1371,21 @@ h2{color:#f5f1e6 !important}
 
 /* SOUL CODE を中央揃え v19 */
 .soul-code-display{display:block;width:100%;text-align:center !important;margin-left:auto;margin-right:auto}
+
+/* ===== 戻るボタン (v23) ===== */
+.back-action{
+  display:inline-flex;align-items:center;gap:.3em;
+  margin:0 0 18px;padding:9px 18px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(212,180,106,.35);
+  color:#e9e4f0;border-radius:999px;
+  font-size:.86rem;letter-spacing:.04em;cursor:pointer;
+  backdrop-filter:blur(6px);
+  transition:background .2s,border-color .2s,transform .15s;
+}
+.back-action:hover{
+  background:rgba(212,180,106,.16);
+  border-color:rgba(212,180,106,.6);
+  transform:translateX(-2px);
+}
+.back-action:active{transform:translateX(-2px) scale(.97)}
