@@ -1363,3 +1363,8 @@ h2{color:#f5f1e6 !important}
 .fr-ml{font-size:11px;letter-spacing:.32em;color:#cdbb83;margin-bottom:12px}
 .fr-end{text-align:center;margin-top:24px;color:#9aa2bc;font-size:12px;letter-spacing:.18em}
 @media(max-width:480px){.fr-secbody{padding-left:0}.fr-sech h3{font-size:17px}}
+
+/* 金色の宇宙的アイコン v17 */
+.gi{width:20px;height:20px;fill:none;stroke:#e7d49a;stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round;
+  filter:drop-shadow(0 0 6px rgba(212,180,106,.55));display:block}
+.pc-ic{display:inline-flex;align-items:center;justify-content:center;width:26px}

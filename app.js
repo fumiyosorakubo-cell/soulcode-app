@@ -782,15 +782,23 @@ function practicalFor(p) {
   const jobs = [...new Set([...(CORE_JOBS[top[0]] || []).slice(0, 2), ...(CORE_JOBS[top[1]] || []).slice(0, 2)])];
   return { color: el.color, stone: el.stone, day: el.day, jobs, keywords: top.slice(0, 3).map((k) => CORE_WORD[k]) };
 }
+// 金色の宇宙的アイコン（SVGライン）
+const GI = {
+  color: `<svg class="gi" viewBox="0 0 24 24"><path d="M12 3c3.5 4.5 5.5 7.6 5.5 10.6a5.5 5.5 0 0 1-11 0C6.5 10.6 8.5 7.5 12 3z"/></svg>`,
+  stone: `<svg class="gi" viewBox="0 0 24 24"><path d="M7 4h10l3.5 5.5L12 20.5 3.5 9.5z"/><path d="M3.5 9.5h17M12 4 9 9.5l3 11 3-11z"/></svg>`,
+  day: `<svg class="gi" viewBox="0 0 24 24"><path d="M17.5 3.5a8 8 0 1 0 3.6 12.8A7 7 0 0 1 17.5 3.5z"/><path d="M20 6.3l.6 1.5 1.5.6-1.5.6-.6 1.5-.6-1.5L17.4 8l1.5-.6z" fill="#e7d49a" stroke="none"/></svg>`,
+  field: `<svg class="gi" viewBox="0 0 24 24"><path d="M12 2l2.1 6.5H21l-5.5 4 2.1 6.6L12 15.4 6.4 19.1l2.1-6.6L3 8.5h6.9z"/></svg>`,
+  key: `<svg class="gi" viewBox="0 0 24 24"><circle cx="8.5" cy="8.5" r="4.3"/><path d="M11.5 11.5l8.5 8.5M16.5 16.5l2.2-2.2M18.7 18.7l2-2"/></svg>`,
+};
 function renderPractical(p) {
   const pr = practicalFor(p);
   const item = (ic, label, val) =>
     `<div class="pc"><span class="pc-ic">${ic}</span><span class="pc-l">${label}</span><span class="pc-v">${val}</span></div>`;
-  return item("🎨", "ラッキーカラー", pr.color) +
-    item("💼", "向いている分野", pr.jobs.join("・")) +
-    item("💎", "パワーストーン", pr.stone) +
-    item("📅", "ラッキーデー", pr.day) +
-    item("🔑", "キーワード", pr.keywords.join("・"));
+  return item(GI.color, "ラッキーカラー", pr.color) +
+    item(GI.field, "向いている分野", pr.jobs.join("・")) +
+    item(GI.stone, "パワーストーン", pr.stone) +
+    item(GI.day, "ラッキーデー", pr.day) +
+    item(GI.key, "キーワード", pr.keywords.join("・"));
 }
 
 // ===== 完全版鑑定書（入力した人ごとに自動生成）=====
@@ -864,7 +872,7 @@ function renderFullReading(p) {
     sec("お金・豊かさとの付き合い方", para(CORE_MONEY[t1])) +
     sec("人生のテーマと成長", para(`あなたの人生のテーマは「<b>${CORE_WORD[t1]}</b>」を生き切ること。`) + para(CORE_GROWTH[t1])) +
     sec("これからの過ごし方", para(`完璧を待たず、いちばん自由でいられる選択を。あなたが一歩動くたびに道はできていきます。その歩みは、いつか誰かの希望になります。`)) +
-    sec("開運ガイド", `<div class="fr-mini">🎨 ラッキーカラー：${pr.color}<br>💎 パワーストーン：${pr.stone}<br>📅 ラッキーデー：${pr.day}<br>💼 向いている分野：${pr.jobs.join("・")}<br>🔑 キーワード：${pr.keywords.join("・")}</div>`) +
+    sec("開運ガイド", `<div class="fr-practical">${renderPractical(p)}</div>`) +
     `<div class="fr-mission"><p class="fr-ml">YOUR SOUL MISSION ・ あなたの魂の使命</p><p class="fr-mission-jp">${p.soulMission || ""}</p><p class="fr-mission-en">${p.soulMissionEn || ""}</p></div>` +
     `<div class="fr-msg">あなたは「たまたま」生まれたのではありません。<br>名前も、生まれた日も、時間も、場所も——すべてが重なって、世界にひとつだけのコードになりました。<span class="fr-msg-big">あなたは、かけがえのない大切な存在です。</span></div>` +
     `<p class="fr-end">✦　Soul Code 分析　|　ソウルコードリサーチャー Fumiyo Sorakubo　✦</p>` +
