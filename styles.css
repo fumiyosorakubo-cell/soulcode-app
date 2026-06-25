@@ -1484,11 +1484,10 @@ html::after{
   background:linear-gradient(90deg,rgba(255,255,255,0),#fff 70%,#cfe6ff);
   box-shadow:0 0 12px 2px rgba(170,215,255,.95),0 0 26px 4px rgba(140,120,255,.5);
   opacity:0;transform:rotate(-22deg)}
-.cosmic-fx .s1{top:6%;left:88%;animation:shootBig 6.5s ease-in 0s infinite}
-.cosmic-fx .s2{top:18%;left:96%;animation:shootBig 8s ease-in 2.4s infinite}
-.cosmic-fx .s3{top:2%;left:60%;animation:shootBig 9.5s ease-in 4.8s infinite;width:150px}
-.cosmic-fx .s4{top:30%;left:92%;animation:shootBig 7.2s ease-in 1.2s infinite;
+.cosmic-fx .s1{top:6%;left:88%;animation:shootBig 14s ease-in 1.5s infinite}
+.cosmic-fx .s2{top:24%;left:94%;animation:shootBig 17s ease-in 8s infinite;
   background:linear-gradient(90deg,rgba(255,255,255,0),#ffe9b8 70%,#fff)}
+.cosmic-fx .s3,.cosmic-fx .s4{display:none}
 @keyframes shootBig{
   0%{opacity:0;transform:translate(0,0) rotate(-22deg)}
   3%{opacity:1}
