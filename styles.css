@@ -1711,3 +1711,10 @@ input[type="time"],input[type="date"]{color-scheme:dark}
 @media (prefers-reduced-motion: reduce){
   .sc-medal-aura,.sc-medal-star{animation:none}
 }
+
+/* ===== 時間/日付ピッカーを金色アイコンに差し替え (v43) ===== */
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-calendar-picker-indicator{
+  filter:none !important;opacity:1 !important;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%23e7c873'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Ccircle%20cx='12'%20cy='12'%20r='9'/%3E%3Cpath%20d='M12%207v5l3%202'/%3E%3C/svg%3E") !important;
+  background-repeat:no-repeat;background-position:center;background-size:21px 21px}
