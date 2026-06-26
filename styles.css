@@ -1645,3 +1645,8 @@ html::before{animation:nebulaDrift 40s ease-in-out infinite alternate, nebulaHue
 .brand-caption{color:#d4b46a !important;letter-spacing:.26em !important;
   font-size:.8rem !important;margin-top:5px !important;opacity:.95}
 @media (prefers-reduced-motion: reduce){.brand-logo{animation:none}}
+
+/* ===== ヘッダーバーを撤去 (v36) ===== */
+.site-header{display:none !important}
+.screen{padding-top:56px !important}
+@media(max-width:480px){.screen{padding-top:44px !important}}
