@@ -194,8 +194,16 @@ function bindPassportActions() {
   });
 }
 
-// 公式LINE（申し込み・お問い合わせの受け皿）
+// 公式LINE（お問い合わせの受け皿）
 const LINE_URL = "https://lin.ee/W7d54wH";
+
+// Stripe決済リンク（Stripeダッシュボードで作成したPayment LinkのURLを貼る）
+// 空のままだと公式LINEへ誘導します。
+const PAYMENT_LINKS = {
+  report: "",   // 完全版鑑定書 ¥1,980
+  future: "",   // 未来の扉 ¥3,300
+  session: "",  // 個別セッション ¥10,000
+};
 
 function bindOfferActions() {
   document.querySelectorAll("[data-product]").forEach((button) => {
@@ -205,9 +213,15 @@ function bindOfferActions() {
       if (reportSeed) {
         console.info("Report seed", reportSeed);
       }
-      // 決済導線が整うまでは、お申し込みは公式LINEで受け付ける
-      showToast("公式LINEへ移動します。トーク画面からお申し込みください🌙");
-      window.open(LINE_URL, "_blank", "noopener");
+      const payUrl = PAYMENT_LINKS[product];
+      if (payUrl) {
+        showToast("決済ページ（Stripe）へ移動します🌙");
+        window.open(payUrl, "_blank", "noopener");
+      } else {
+        // 決済リンク未設定の商品は公式LINEで受け付ける
+        showToast("公式LINEへ移動します。トーク画面からお申し込みください🌙");
+        window.open(LINE_URL, "_blank", "noopener");
+      }
     });
   });
 
