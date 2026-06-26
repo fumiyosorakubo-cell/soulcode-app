@@ -200,7 +200,7 @@ const LINE_URL = "https://lin.ee/W7d54wH";
 // Stripe決済リンク（Stripeダッシュボードで作成したPayment LinkのURLを貼る）
 // 空のままだと公式LINEへ誘導します。
 const PAYMENT_LINKS = {
-  report: "",   // 完全版鑑定書 ¥1,980
+  report: "https://buy.stripe.com/test_cNi00icdjeyc2hleiHbjW00",   // 完全版鑑定書 ¥1,980（※テストリンク）
   future: "",   // 未来の扉 ¥3,300
   session: "",  // 個別セッション ¥10,000
 };
