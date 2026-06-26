@@ -196,15 +196,15 @@ function bindPassportActions() {
   });
 }
 
-// 公式LINE（お問い合わせの受け皿）
+// 公式LINE（予約・ヒアリング・お渡し・決済リンク送付の受け皿）
 const LINE_URL = "https://lin.ee/W7d54wH";
 
-// Stripe決済リンク（Stripeダッシュボードで作成したPayment LinkのURLを貼る）
-// 空のままだと公式LINEへ誘導します。
-const PAYMENT_LINKS = {
-  report: "https://buy.stripe.com/test_cNi00icdjeyc2hleiHbjW00",   // 完全版鑑定書 ¥1,980（※テストリンク）
-  future: "https://buy.stripe.com/test_aFa28qdhn9dS7BF2zZbjW01",   // 未来の扉 ¥3,300（※テストリンク）
-  session: "https://buy.stripe.com/test_fZu3cu2CJ61Gg8bgqPbjW02",  // 個別セッション ¥10,000（※テストリンク）
+// 申し込み・お支払いは公式LINEで受付。
+// 決済はLINEのトーク内で下記Stripeリンクを送ればカード決済できます（※現在テストリンク）。
+const STRIPE_LINKS = {
+  report: "https://buy.stripe.com/test_cNi00icdjeyc2hleiHbjW00",   // 完全版鑑定書 ¥1,980
+  future: "https://buy.stripe.com/test_aFa28qdhn9dS7BF2zZbjW01",   // 未来の扉 ¥3,300
+  session: "https://buy.stripe.com/test_fZu3cu2CJ61Gg8bgqPbjW02",  // 個別セッション ¥10,000
 };
 
 function bindOfferActions() {
@@ -215,15 +215,9 @@ function bindOfferActions() {
       if (reportSeed) {
         console.info("Report seed", reportSeed);
       }
-      const payUrl = PAYMENT_LINKS[product];
-      if (payUrl) {
-        showToast("決済ページ（Stripe）へ移動します🌙");
-        window.open(payUrl, "_blank", "noopener");
-      } else {
-        // 決済リンク未設定の商品は公式LINEで受け付ける
-        showToast("公式LINEへ移動します。トーク画面からお申し込みください🌙");
-        window.open(LINE_URL, "_blank", "noopener");
-      }
+      // 予約・ヒアリング・お支払いはすべて公式LINEで受付
+      showToast("公式LINEへ。トークからご予約・お支払いができます🌙");
+      window.open(LINE_URL, "_blank", "noopener");
     });
   });
 
