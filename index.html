@@ -8,7 +8,7 @@
       content="Soul Code分析学 - あなただけの魂の設計図を授与する人生分析プラットフォーム"
     />
     <title>Soul Code分析学 | あなただけの魂の設計図</title>
-    <link rel="stylesheet" href="./styles.css?v=43" />
+    <link rel="stylesheet" href="./styles.css?v=45" />
   </head>
   <body>
     <div class="cosmic-fx" aria-hidden="true">
@@ -26,7 +26,7 @@
     <div class="site-shell">
       <header class="site-header" aria-label="メインナビゲーション">
         <a class="brand-mark" href="#home" data-nav="home" aria-label="ソウルコード分析学 トップ">
-          <img class="brand-logo" src="./assets/logo-mark.png?v=43" alt="" aria-hidden="true" />
+          <img class="brand-logo" src="./assets/logo-mark.png?v=45" alt="" aria-hidden="true" />
           <span>
             <span class="brand-name">ソウルコード分析学</span>
             <span class="brand-caption">SOUL CODE ・ 魂の設計図</span>
@@ -38,7 +38,7 @@
         <section class="screen hero-screen is-active" id="home" data-screen="home" aria-labelledby="home-title">
           <div class="hero-visual" aria-hidden="true"></div>
           <div class="hero-content hero-centered">
-            <img class="hero-logo" src="./assets/logo.png?v=43" alt="ソウルコード分析学 SOUL CODE ANALYTICS" />
+            <img class="hero-logo" src="./assets/logo.png?v=45" alt="ソウルコード分析学 SOUL CODE ANALYTICS" />
             <h1 id="home-title">魂の設計図</h1>
             <p class="hero-lead">あなたは、この世界にたった一人。</p>
             <p class="hero-copy">
@@ -77,18 +77,18 @@
             </label>
 
             <fieldset class="date-grid">
-              <legend>生年月日</legend>
+              <legend>生年月日（西暦）</legend>
               <label class="field compact">
+                <input id="birth-year" name="birthYear" type="text" inputmode="numeric" maxlength="4" placeholder="1980（西暦）" required />
                 <span>年</span>
-                <input id="birth-year" name="birthYear" type="number" min="1900" max="2099" placeholder="1980" required />
               </label>
               <label class="field compact">
+                <input id="birth-month" name="birthMonth" type="text" inputmode="numeric" maxlength="2" placeholder="8" required />
                 <span>月</span>
-                <input id="birth-month" name="birthMonth" type="number" min="1" max="12" placeholder="8" required />
               </label>
               <label class="field compact">
+                <input id="birth-day" name="birthDay" type="text" inputmode="numeric" maxlength="2" placeholder="19" required />
                 <span>日</span>
-                <input id="birth-day" name="birthDay" type="number" min="1" max="31" placeholder="19" required />
               </label>
             </fieldset>
 
@@ -154,7 +154,7 @@
           </div>
 
           <div class="sc-result">
-            <img class="sc-logo" src="./assets/logo-mark.png?v=43" alt="" aria-hidden="true" />
+            <img class="sc-logo" src="./assets/logo-mark.png?v=45" alt="" aria-hidden="true" />
             <p class="sc-unique">ONE OF A KIND ・ 唯一無二</p>
             <div class="sc-medal">
               <span class="sc-medal-aura" aria-hidden="true"></span>
@@ -205,7 +205,7 @@
             <p>あなただけの、深い読み解き。</p>
           </div>
           <div class="sc-result fr-wrap">
-            <img class="sc-logo" src="./assets/logo-mark.png?v=43" alt="" aria-hidden="true" />
+            <img class="sc-logo" src="./assets/logo-mark.png?v=45" alt="" aria-hidden="true" />
             <div id="fullreading-body"></div>
           </div>
           <div class="next-actions">
@@ -416,6 +416,6 @@
 
     <canvas id="passport-canvas" width="1600" height="1000" hidden></canvas>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script src="./app.js?v=43" defer></script>
+    <script src="./app.js?v=45" defer></script>
   </body>
 </html>

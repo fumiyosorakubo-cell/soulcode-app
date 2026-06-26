@@ -122,6 +122,7 @@ function init() {
   safe(bindNavigation);
   safe(addBackButtons);
   safe(bindForm);
+  safe(bindNumericFields);
   safe(applyCopy);
   safe(updateProfileViews);
   safe(hydrateAdmin);
@@ -1071,6 +1072,25 @@ async function downloadPassportImage(profile) {
   link.href = canvas.toDataURL("image/png");
   link.click();
   showToast("Soul Code Passport画像を保存しました。");
+}
+
+// 全角数字→半角に自動変換（生年月日の入力欄）。全角でも反応するようにする。
+function toHalfWidthDigits(s) {
+  return s
+    .replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xfee0))
+    .replace(/[^0-9]/g, "");
+}
+function bindNumericFields() {
+  ["#birth-year", "#birth-month", "#birth-day"].forEach((sel) => {
+    const el = document.querySelector(sel);
+    if (!el) return;
+    const fix = () => {
+      const cleaned = toHalfWidthDigits(el.value);
+      if (el.value !== cleaned) el.value = cleaned;
+    };
+    el.addEventListener("input", fix);
+    el.addEventListener("blur", fix);
+  });
 }
 
 // ===== 幸運のソウルコード：待ち受け画像（1080x1920）=====
