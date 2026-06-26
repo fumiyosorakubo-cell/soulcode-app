@@ -1119,115 +1119,44 @@ function luckyText(ctx, text, x, y, o = {}) {
   ctx.restore();
 }
 
-function renderLuckyCanvas(profile) {
+// 採用デザイン(assets/lucky-bg.png 852x1070)を背景に、本人の5コアを差し替えて描画
+const LUCKY_BG = "./assets/lucky-bg.png?v=46";
+// 5コアの配置（強い順：上→左上→右上→左下→右下）
+const LUCKY_POS = [[422, 250], [178, 440], [674, 440], [250, 686], [600, 686]];
+
+async function renderLuckyCanvas(profile) {
   const canvas = document.querySelector("#lucky-canvas");
+  const W = 852, H = 1070;
+  canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext("2d");
-  const W = 1080, H = 1920, cx = 540, cy = 760, R = 300;
+  const bg = await loadImage(LUCKY_BG);
+  ctx.clearRect(0, 0, W, H);
+  ctx.drawImage(bg, 0, 0, W, H);
 
-  // 背景（宇宙ネイビー）
-  const bg = ctx.createLinearGradient(0, 0, 0, H);
-  bg.addColorStop(0, "#070f26"); bg.addColorStop(0.55, "#0d1838"); bg.addColorStop(1, "#070b1e");
-  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
-  const glow = (gx, gy, gr, col) => {
-    const g = ctx.createRadialGradient(gx, gy, 0, gx, gy, gr);
-    g.addColorStop(0, col); g.addColorStop(1, "transparent");
-    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-  };
-  glow(300, 360, 560, "rgba(120,80,200,.5)");
-  glow(820, 1480, 600, "rgba(50,110,210,.45)");
-
-  // 星
-  for (let i = 0; i < 150; i++) {
-    ctx.globalAlpha = Math.random() * 0.7 + 0.3;
-    ctx.fillStyle = "#ffffff";
-    ctx.beginPath();
-    ctx.arc(Math.random() * W, Math.random() * H, Math.random() * 1.8 + 0.4, 0, 7);
-    ctx.fill();
-  }
-  ctx.globalAlpha = 1;
-
-  // ヘッダー
-  luckyText(ctx, "LUCKY SOUL CODE", cx, 156, { size: 30, color: "#d4b46a", family: '"Hiragino Sans",sans-serif', spacing: 6 });
-  luckyText(ctx, "幸運のソウルコード", cx, 222, { size: 50, color: "#f5efe1", family: '"Hiragino Mincho ProN",serif' });
-
-  // 宇宙のエネルギー放射
-  ctx.save();
-  ctx.translate(cx, cy);
-  for (let i = 0; i < 48; i++) {
-    ctx.rotate((Math.PI * 2) / 48);
-    ctx.fillStyle = i % 2 ? "rgba(190,215,255,.12)" : "rgba(212,180,106,.16)";
-    ctx.fillRect(R - 6, -2.5, 150, 5);
-  }
-  ctx.restore();
-  glow(cx, cy, R + 130, "rgba(212,180,106,.22)");
-
-  // メダル本体
-  const disc = ctx.createRadialGradient(cx - 70, cy - 90, 40, cx, cy, R);
-  disc.addColorStop(0, "#21336a"); disc.addColorStop(0.7, "#101c44"); disc.addColorStop(1, "#0a1330");
-  ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.fillStyle = disc; ctx.fill();
-  // 金リング
-  const ring = ctx.createLinearGradient(cx - R, cy - R, cx + R, cy + R);
-  ring.addColorStop(0, "#7a5a1e"); ring.addColorStop(0.3, "#f6e6b0");
-  ring.addColorStop(0.55, "#caa64e"); ring.addColorStop(0.8, "#fff3cf"); ring.addColorStop(1, "#9b7a2e");
-  ctx.lineWidth = 10; ctx.strokeStyle = ring;
-  ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.stroke();
-  ctx.lineWidth = 2; ctx.strokeStyle = "rgba(246,230,176,.7)";
-  ctx.beginPath(); ctx.arc(cx, cy, R - 18, 0, 7); ctx.stroke();
-  // グロス
-  const gloss = ctx.createRadialGradient(cx - 90, cy - 140, 10, cx - 90, cy - 140, 260);
-  gloss.addColorStop(0, "rgba(255,255,255,.22)"); gloss.addColorStop(1, "transparent");
-  ctx.beginPath(); ctx.arc(cx, cy, R - 6, 0, 7); ctx.fillStyle = gloss; ctx.fill();
-
-  // メダル内テキスト
-  luckyText(ctx, "✦", cx, cy - 132, { size: 48, color: "#f6e6b0", glow: "rgba(246,230,176,.8)" });
-  luckyText(ctx, "SOUL CODE", cx, cy - 80, { size: 26, color: "#d4b46a", family: '"Hiragino Sans",sans-serif', spacing: 8 });
-  // コード（金グラデ・幅に合わせて縮小）
-  let cs = 96;
-  ctx.font = `600 ${cs}px Georgia,"Hiragino Mincho ProN",serif`;
-  while (ctx.measureText(profile.soulCode).width > 470 && cs > 40) { cs -= 4; ctx.font = `600 ${cs}px Georgia,"Hiragino Mincho ProN",serif`; }
-  const cg = ctx.createLinearGradient(0, cy - 30, 0, cy + 40);
-  cg.addColorStop(0, "#fff6d8"); cg.addColorStop(0.55, "#f0d28a"); cg.addColorStop(1, "#caa64e");
-  luckyText(ctx, profile.soulCode, cx, cy + 22, { size: cs, weight: 600, family: 'Georgia,"Hiragino Mincho ProN",serif', fill: cg });
-  luckyText(ctx, "魂の設計図", cx, cy + 116, { size: 30, color: "#efe6cf", family: '"Hiragino Mincho ProN",serif', spacing: 4 });
-
-  // 称号
-  let y = cy + R + 96;
-  luckyText(ctx, profile.soulTitle || "", cx, y, { size: 56, color: "#f5efe1", family: '"Hiragino Mincho ProN",serif' });
-  luckyText(ctx, (profile.soulTitleEn || "").toUpperCase(), cx, y + 46, { size: 26, color: "#d4b46a", family: '"Hiragino Sans",sans-serif', spacing: 4 });
-
-  // 魂の使命（中央寄せ折返し）
-  y += 124;
-  ctx.font = `400 34px "Hiragino Mincho ProN",serif`;
-  ctx.textAlign = "center";
-  const words = (profile.soulMission || "").split("");
-  let line = "", lines = [];
-  for (const ch of words) {
-    if (ctx.measureText(line + ch).width > 820) { lines.push(line); line = ch; } else line += ch;
-  }
-  if (line) lines.push(line);
-  ctx.fillStyle = "#eee6d2";
-  lines.slice(0, 3).forEach((ln, i) => ctx.fillText(ln, cx, y + i * 50));
-  y += lines.slice(0, 3).length * 50 + 30;
-
-  // 区切り
-  luckyText(ctx, "✧ ・ ✦ ・ ✧", cx, y, { size: 24, color: "rgba(212,180,106,.7)" });
-  y += 64;
-
-  // ラッキー要素
-  const p = practicalFor(profile);
-  luckyText(ctx, `ラッキーカラー　${p.color}`, cx, y, { size: 32, color: "#efe6cf" });
-  luckyText(ctx, `パワーストーン　${p.stone}`, cx, y + 50, { size: 32, color: "#efe6cf" });
-  luckyText(ctx, `ラッキーデー　${p.day}`, cx, y + 100, { size: 32, color: "#efe6cf" });
-
-  // フッター
-  luckyText(ctx, "宇宙のエネルギーを受け取る、あなただけのSoul Code", cx, 1838, { size: 28, color: "#d4b46a", family: '"Hiragino Mincho ProN",serif' });
-  luckyText(ctx, "ソウルコード分析学", cx, 1884, { size: 26, color: "rgba(245,239,225,.82)", family: '"Hiragino Mincho ProN",serif', spacing: 3 });
+  const cores = Object.entries(profile.coreScores || {}).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  cores.forEach(([k, v], i) => {
+    const [x, y] = LUCKY_POS[i] || [0, 0];
+    // 元の数値をネイビーでマスク
+    const m = ctx.createRadialGradient(x, y, 0, x, y, 48);
+    m.addColorStop(0, "#0e1a2e"); m.addColorStop(0.62, "#0e1a2e"); m.addColorStop(1, "rgba(14,26,46,0)");
+    ctx.fillStyle = m; ctx.beginPath(); ctx.arc(x, y, 48, 0, 7); ctx.fill();
+    // 本人のコアを金で描画
+    const g = ctx.createLinearGradient(0, y - 26, 0, y + 26);
+    g.addColorStop(0, "#fff3cf"); g.addColorStop(0.55, "#e7c873"); g.addColorStop(1, "#b9933f");
+    ctx.font = '600 46px Georgia,"Times New Roman","Hiragino Mincho ProN",serif';
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.shadowColor = "rgba(0,0,0,.55)"; ctx.shadowBlur = 8;
+    ctx.fillStyle = g;
+    const digit = Math.min(9, Math.floor(v / 10)); // コードと同じ1桁表記
+    ctx.fillText(`${k}${digit}`, x, y + 2);
+    ctx.shadowBlur = 0;
+  });
 
   return canvas;
 }
 
-function downloadLuckyWallpaper(profile) {
-  const canvas = renderLuckyCanvas(profile);
+async function downloadLuckyWallpaper(profile) {
+  const canvas = await renderLuckyCanvas(profile);
   const link = document.createElement("a");
   link.download = `${profile.soulCode}-lucky.png`;
   link.href = canvas.toDataURL("image/png");
@@ -1238,8 +1167,8 @@ function downloadLuckyWallpaper(profile) {
 const LUCKY_CAPTION = (code) =>
   `私の幸運のソウルコードは ${code} 🌙\n宇宙のエネルギーを受け取る、世界に一つだけの設計図。\nあなたも受け取ってみて✨ 感想も教えてね！\n#幸運のソウルコード #ソウルコード分析学 @sorakubo_mind`;
 
-function shareLucky(profile) {
-  const canvas = renderLuckyCanvas(profile);
+async function shareLucky(profile) {
+  const canvas = await renderLuckyCanvas(profile);
   const caption = LUCKY_CAPTION(profile.soulCode);
   canvas.toBlob(async (blob) => {
     const file = new File([blob], `${profile.soulCode}-lucky.png`, { type: "image/png" });
