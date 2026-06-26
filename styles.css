@@ -1650,3 +1650,10 @@ html::before{animation:nebulaDrift 40s ease-in-out infinite alternate, nebulaHue
 .site-header{display:none !important}
 .screen{padding-top:56px !important}
 @media(max-width:480px){.screen{padding-top:44px !important}}
+
+/* ===== 時間/日付入力のピッカーアイコンを明るく (v41) ===== */
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-calendar-picker-indicator{
+  filter:invert(1) brightness(1.6) sepia(.4) saturate(3) hue-rotate(5deg);
+  opacity:.95;cursor:pointer}
+input[type="time"],input[type="date"]{color-scheme:dark}
