@@ -201,7 +201,7 @@ const LINE_URL = "https://lin.ee/W7d54wH";
 // 空のままだと公式LINEへ誘導します。
 const PAYMENT_LINKS = {
   report: "https://buy.stripe.com/test_cNi00icdjeyc2hleiHbjW00",   // 完全版鑑定書 ¥1,980（※テストリンク）
-  future: "",   // 未来の扉 ¥3,300
+  future: "https://buy.stripe.com/test_aFa28qdhn9dS7BF2zZbjW01",   // 未来の扉 ¥3,300（※テストリンク）
   session: "",  // 個別セッション ¥10,000
 };
 
