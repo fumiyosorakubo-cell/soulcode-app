@@ -1121,8 +1121,8 @@ function luckyText(ctx, text, x, y, o = {}) {
 
 // 採用デザイン(assets/lucky-bg.png 852x1070)を背景に、本人の5コアを差し替えて描画
 const LUCKY_BG = "./assets/lucky-bg.png?v=46";
-// 5コアの配置（強い順：上→左上→右上→左下→右下）
-const LUCKY_POS = [[422, 250], [178, 440], [674, 440], [250, 686], [600, 686]];
+// 5コアの配置（強い順：上→左上→右上→左下→右下）。元数字の中心に合わせて校正済み。
+const LUCKY_POS = [[422, 242], [186, 445], [663, 443], [255, 678], [595, 683]];
 
 async function renderLuckyCanvas(profile) {
   const canvas = document.querySelector("#lucky-canvas");
@@ -1136,10 +1136,10 @@ async function renderLuckyCanvas(profile) {
   const cores = Object.entries(profile.coreScores || {}).sort((a, b) => b[1] - a[1]).slice(0, 5);
   cores.forEach(([k, v], i) => {
     const [x, y] = LUCKY_POS[i] || [0, 0];
-    // 元の数値をネイビーでマスク
-    const m = ctx.createRadialGradient(x, y, 0, x, y, 48);
-    m.addColorStop(0, "#0e1a2e"); m.addColorStop(0.62, "#0e1a2e"); m.addColorStop(1, "rgba(14,26,46,0)");
-    ctx.fillStyle = m; ctx.beginPath(); ctx.arc(x, y, 48, 0, 7); ctx.fill();
+    // 元の数値をネイビーでマスク（数字を完全に覆う大きさ）
+    const m = ctx.createRadialGradient(x, y, 0, x, y, 56);
+    m.addColorStop(0, "#0d1a2c"); m.addColorStop(0.66, "#0d1a2c"); m.addColorStop(1, "rgba(13,26,44,0)");
+    ctx.fillStyle = m; ctx.beginPath(); ctx.arc(x, y, 56, 0, 7); ctx.fill();
     // 本人のコアを金で描画
     const g = ctx.createLinearGradient(0, y - 26, 0, y + 26);
     g.addColorStop(0, "#fff3cf"); g.addColorStop(0.55, "#e7c873"); g.addColorStop(1, "#b9933f");
