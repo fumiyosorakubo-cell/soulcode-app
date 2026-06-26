@@ -1723,3 +1723,18 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 .date-grid .field.compact{display:flex;flex-direction:row;align-items:center;gap:8px}
 .date-grid .field.compact input{flex:1 1 auto;min-width:0;text-align:center}
 .date-grid .field.compact span{flex:0 0 auto;font-size:.98rem;line-height:1}
+
+/* ===== 鑑定書をPDF保存（印刷）: 宇宙の雰囲気を保ったまま鑑定書だけ出す (v48) ===== */
+@media print {
+  body.print-reading{background:#070b1e !important}
+  body.print-reading *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+  body.print-reading .cosmic-fx,
+  body.print-reading .back-fixed,
+  body.print-reading .toast,
+  body.print-reading .site-header{display:none !important}
+  body.print-reading .screen:not(#fullreading){display:none !important}
+  body.print-reading #fullreading{display:block !important;min-height:auto;padding:24px}
+  body.print-reading #fullreading .section-heading,
+  body.print-reading #fullreading .next-actions{display:none !important}
+  body.print-reading #fullreading .fr-wrap{box-shadow:none !important;page-break-inside:auto}
+}

@@ -128,9 +128,44 @@ function init() {
   safe(hydrateAdmin);
   safe(bindPassportActions);
   safe(bindLuckyActions);
+  safe(bindReadingPdf);
   safe(bindOfferActions);
   safe(bindAdmin);
   safe(renderTables);
+  // モジュール全体（KANA_GROUP等）の初期化完了後に実行
+  setTimeout(function () { safe(parseQueryProfile); }, 0);
+}
+
+// 決済後の自動メールのリンクから、本人の鑑定書を自動表示する
+// 例: ?sc=1&n=そらくぼ ふみよ&y=1970&mo=6&d=11&t=14:30&pl=大分県
+function parseQueryProfile() {
+  const q = new URLSearchParams(location.search);
+  if (q.get("sc") !== "1") return;
+  const payload = {
+    name: (q.get("n") || "").trim(),
+    birthYear: (q.get("y") || "").trim(),
+    birthMonth: (q.get("mo") || "").trim(),
+    birthDay: (q.get("d") || "").trim(),
+    birthTime: (q.get("t") || "").trim(),
+    unknownTime: q.get("u") === "1" || !q.get("t"),
+    birthPlace: (q.get("pl") || "").trim(),
+  };
+  if (!payload.name || !payload.birthYear || !payload.birthMonth || !payload.birthDay) return;
+  activeProfile = createSoulProfile(payload);
+  saveJson(STORAGE_KEYS.current, activeProfile);
+  updateProfileViews();
+  showScreen("fullreading");
+}
+
+// 鑑定書を「PDFで保存」（印刷）
+function bindReadingPdf() {
+  const btn = document.querySelector("#save-reading-pdf");
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    document.body.classList.add("print-reading");
+    window.print();
+  });
+  window.addEventListener("afterprint", () => document.body.classList.remove("print-reading"));
 }
 
 // 1ステップが失敗してもアプリ全体を止めない
