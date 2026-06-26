@@ -1615,3 +1615,33 @@ html::before{animation:nebulaDrift 40s ease-in-out infinite alternate, nebulaHue
   padding:11px 22px;font-size:.9rem;
   background:rgba(12,20,38,.72);backdrop-filter:blur(10px);
   box-shadow:0 10px 30px rgba(4,10,28,.5),0 0 0 1px rgba(212,180,106,.25) inset}
+
+/* ===== ヘッダーをネイビーブルー×ゴージャス宇宙的に (v35) ===== */
+.site-header{
+  justify-content:center !important;
+  min-height:88px !important;
+  background:linear-gradient(180deg,rgba(16,28,64,.94),rgba(9,16,38,.9)) !important;
+  border-bottom:none !important;
+  box-shadow:0 10px 34px rgba(4,10,28,.55) !important;
+  overflow:hidden;
+}
+/* 上部のほのかな星雲の光 */
+.site-header::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+   radial-gradient(460px 130px at 50% -10%,rgba(130,160,255,.20),transparent 70%),
+   radial-gradient(300px 120px at 18% 120%,rgba(150,90,220,.16),transparent 70%),
+   radial-gradient(300px 120px at 82% 120%,rgba(60,130,235,.16),transparent 70%)}
+/* 金のグラデ下線 */
+.site-header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.6px;z-index:1;
+  background:linear-gradient(90deg,transparent,rgba(212,180,106,.6) 18%,rgba(246,230,176,.95) 50%,rgba(212,180,106,.6) 82%,transparent)}
+.brand-mark{position:relative;z-index:2;gap:18px !important;justify-content:center}
+.brand-logo{height:60px !important;width:auto;
+  filter:drop-shadow(0 0 18px rgba(130,200,255,.55)) drop-shadow(0 0 7px rgba(212,180,106,.5)) !important;
+  animation:hdrLogo 5s ease-in-out infinite}
+@keyframes hdrLogo{0%,100%{filter:drop-shadow(0 0 16px rgba(130,200,255,.45)) drop-shadow(0 0 6px rgba(212,180,106,.4))}
+  50%{filter:drop-shadow(0 0 30px rgba(150,210,255,.8)) drop-shadow(0 0 14px rgba(246,230,176,.7))}}
+.brand-name{font-size:clamp(1.18rem,2.4vw,1.5rem) !important;color:#f5efe1 !important;
+  letter-spacing:.12em !important;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+.brand-caption{color:#d4b46a !important;letter-spacing:.26em !important;
+  font-size:.8rem !important;margin-top:5px !important;opacity:.95}
+@media (prefers-reduced-motion: reduce){.brand-logo{animation:none}}
