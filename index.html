@@ -8,7 +8,7 @@
       content="Soul Code分析学 - あなただけの魂の設計図を授与する人生分析プラットフォーム"
     />
     <title>Soul Code分析学 | あなただけの魂の設計図</title>
-    <link rel="stylesheet" href="./styles.css?v=54" />
+    <link rel="stylesheet" href="./styles.css?v=55" />
   </head>
   <body>
     <div class="cosmic-fx" aria-hidden="true">
@@ -219,9 +219,25 @@
             <div id="fullreading-body"></div>
           </div>
           <div class="next-actions">
-            <button class="secondary-action" type="button" id="save-reading-pdf">📄 PDFで保存する</button>
+            <button class="secondary-action save-pdf" type="button" id="save-reading-pdf">📄 PDFで保存する</button>
             <button class="secondary-action" type="button" data-nav="gift">結果に戻る</button>
             <button class="primary-action" type="button" data-nav="offers">セッション・PDFを申し込む</button>
+          </div>
+        </section>
+
+        <section class="screen full-screen" id="future" data-screen="future" aria-labelledby="future-title">
+          <div class="section-heading">
+            <p class="eyebrow">The Future Door</p>
+            <h2 id="future-title">未来の扉 ソウルコード分析の書</h2>
+            <p>これから3ヶ月の、あなただけの羅針盤。</p>
+          </div>
+          <div class="sc-result fr-wrap">
+            <img class="sc-logo" src="./assets/logo-mark.png?v=48" alt="" aria-hidden="true" />
+            <div id="future-body"></div>
+          </div>
+          <div class="next-actions">
+            <button class="secondary-action save-pdf" type="button">📄 PDFで保存する</button>
+            <button class="primary-action" type="button" data-nav="offers">他の鑑定を見る</button>
           </div>
         </section>
 
@@ -427,6 +443,6 @@
 
     <canvas id="passport-canvas" width="1600" height="1000" hidden></canvas>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script src="./app.js?v=54" defer></script>
+    <script src="./app.js?v=55" defer></script>
   </body>
 </html>

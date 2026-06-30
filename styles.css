@@ -1732,11 +1732,11 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   body.print-reading .back-fixed,
   body.print-reading .toast,
   body.print-reading .site-header{display:none !important}
-  body.print-reading .screen:not(#fullreading){display:none !important}
-  body.print-reading #fullreading{display:block !important;min-height:auto;padding:24px}
-  body.print-reading #fullreading .section-heading,
-  body.print-reading #fullreading .next-actions{display:none !important}
-  body.print-reading #fullreading .fr-wrap{box-shadow:none !important;page-break-inside:auto}
+  body.print-reading .screen:not(.is-active){display:none !important}
+  body.print-reading .screen.is-active{display:block !important;min-height:auto;padding:24px}
+  body.print-reading .screen.is-active .section-heading,
+  body.print-reading .screen.is-active .next-actions{display:none !important}
+  body.print-reading .fr-wrap{box-shadow:none !important;page-break-inside:auto}
 }
 
 /* v49 ─ 完全版へのアップセル（無料はチラ見せ→完全版に誘導） */

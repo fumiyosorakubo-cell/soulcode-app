@@ -154,16 +154,17 @@ function parseQueryProfile() {
   activeProfile = createSoulProfile(payload);
   saveJson(STORAGE_KEYS.current, activeProfile);
   updateProfileViews();
-  showScreen("fullreading");
+  // k=future なら「未来の扉」、それ以外は完全版鑑定書
+  showScreen(q.get("k") === "future" ? "future" : "fullreading");
 }
 
 // 鑑定書を「PDFで保存」（印刷）
 function bindReadingPdf() {
-  const btn = document.querySelector("#save-reading-pdf");
-  if (!btn) return;
-  btn.addEventListener("click", () => {
-    document.body.classList.add("print-reading");
-    window.print();
+  document.querySelectorAll(".save-pdf").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.body.classList.add("print-reading");
+      window.print();
+    });
   });
   window.addEventListener("afterprint", () => document.body.classList.remove("print-reading"));
 }
@@ -834,6 +835,8 @@ function updateProfileViews() {
   if (giftPractical) giftPractical.innerHTML = renderPractical(profile);
   const fullBody = document.querySelector("#fullreading-body");
   if (fullBody) fullBody.innerHTML = renderFullReading(profile);
+  const futureBody = document.querySelector("#future-body");
+  if (futureBody) futureBody.innerHTML = renderFutureReading(profile);
   // 占星術（出生図）は裏で算出してコアに反映するのみ。表には出さない。
 
   setText("#passport-name", profile.name);
@@ -983,6 +986,63 @@ function renderFullReading(p) {
     `<div class="fr-mission"><p class="fr-ml">YOUR SOUL MISSION ・ あなたの魂の使命</p><p class="fr-mission-jp">${p.soulMission || ""}</p><p class="fr-mission-en">${p.soulMissionEn || ""}</p></div>` +
     `<div class="fr-msg">あなたは「たまたま」生まれたのではありません。<br>名前も、生まれた日も、時間も、場所も——すべてが重なって、世界にひとつだけのコードになりました。<span class="fr-msg-big">あなたは、かけがえのない大切な存在です。</span></div>` +
     `<p class="fr-end">✦　Soul Code 分析　|　ソウルコードリサーチャー Fumiyo Sorakubo　✦</p>` +
+    `</div>`;
+}
+
+// ===== 未来の扉 鑑定書（これから3ヶ月・入力した人ごとに自動生成）=====
+const FUTURE_TAILWIND = {
+  L: "「伝える・表現する」追い風が吹いています。発信したり、人前に出たり、自分を表に出すほど、思いがけないチャンスや出会いが舞い込む3ヶ月。",
+  D: "「学び・深める」追い風が吹いています。ひとつのことにじっくり取り組むほど、本質的な成果と確かな手応えにつながる3ヶ月。",
+  S: "「動く・試す」追い風が吹いています。新しい挑戦や環境の変化が幸運の鍵。フットワーク軽く動くほど道がひらける3ヶ月。",
+  B: "「つながり・支え合い」の追い風が吹いています。人との縁があなたを次の場所へ運ぶ3ヶ月。誰かとの出会いが扉になります。",
+  C: "「決める・やり遂げる」追い風が吹いています。覚悟を決めて一点に集中することが、大きな実りに変わる3ヶ月。",
+};
+const FUTURE_DIRECTION = {
+  L: "あなたの言葉・作品を、もう一歩だけ外へ。表現を惜しまないことが、次の扉をひらきます。",
+  D: "ひとつのテーマを深掘りしてください。その専門性こそが、これからのあなたの武器になります。",
+  S: "迷ったら「新しい方」を選んで。自由に動くほど、運のめぐりが良くなります。",
+  B: "信頼できる人と組んでください。一人で抱えず、分かち合うことで道が広がります。",
+  C: "「これ」と決めたことに集中を。あれこれ手を出すより、一点突破が幸運を呼びます。",
+};
+const FUTURE_CAUTION = {
+  L: "発信疲れに少しだけ注意。ときどき静かな時間で、心を充電してください。",
+  D: "考えすぎて動けなくならないよう、まず小さく試してみることを意識して。",
+  S: "広げすぎに注意。手を広げるより「絞る」ことで、成果が大きくなります。",
+  B: "自分を後回しにしすぎないで。あなた自身の声と願いも、同じくらい大切に。",
+  C: "頑張りすぎ・抱え込みに注意。人に任せる余白が、もっと遠くへ運んでくれます。",
+};
+const FUTURE_MONTH = {
+  L: ["心に浮かんだことを言葉にして発信する", "あなたの表現に共感する人が集まりはじめる", "発信が形になり、嬉しい反応が返ってくる"],
+  D: ["興味のあるテーマをひとつ決めて学びはじめる", "理解が深まり、自分なりの視点が育つ", "深めた知識が、人の役に立ちはじめる"],
+  S: ["気になっていた新しいことに一歩踏み出す", "動いた先で、思いがけない縁やヒントに出会う", "試した中から、本命の道が見えてくる"],
+  B: ["大切な人との時間を意識して増やす", "信頼の輪が広がり、心強い味方ができる", "人とのつながりが、新しい機会を運んでくる"],
+  C: ["やると決めたことを、ひとつ宣言する", "ぶれずに続けることで、着実に前進する", "積み上げてきたものが、確かな形になる"],
+};
+function renderFutureReading(p) {
+  const sorted = Object.entries(p.coreScores || {}).sort((a, b) => b[1] - a[1]);
+  const t1 = sorted[0][0], t2 = sorted[1][0];
+  const pr = practicalFor(p);
+  let n = 0;
+  const para = (t) => `<p class="fr-p">${t}</p>`;
+  const sec = (title, body) => {
+    n++;
+    return `<section class="fr-sec"><div class="fr-sech"><span class="fr-num">${String(n).padStart(2, "0")}</span><h3>${title}</h3></div><div class="fr-secbody">${body}</div></section>`;
+  };
+  const months = FUTURE_MONTH[t1] || FUTURE_MONTH.L;
+  const monthHtml = `<div class="fr-core"><h4>1ヶ月目 ・ 種をまく</h4><p>${months[0]}。焦らず、小さな一歩から始めましょう。</p></div>` +
+    `<div class="fr-core"><h4>2ヶ月目 ・ 育てる</h4><p>${months[1]}。手応えを感じはじめる時期。続けることが力になります。</p></div>` +
+    `<div class="fr-core"><h4>3ヶ月目 ・ 花ひらく</h4><p>${months[2]}。ここまでの積み重ねが、嬉しい形になって返ってきます。</p></div>`;
+  return `<div class="fr-doc">` +
+    sec("はじめに", para(`この「未来の扉」は、あなたのソウルコード <b>${p.soulCode}</b> に、これからの時の流れが持つエネルギーを重ね合わせて読み解いた、<b>この先3ヶ月のあなただけの羅針盤</b>です。`) +
+      para(`未来は決まっているものではありません。これは「こう動けば、追い風に乗れる」という、あなたのための地図です。`)) +
+    sec("いま、あなたが立っている場所", para(`あなたの中でいちばん強いのは「<b>${CORE_WORD[t1]}</b>」の力、それを支えるのが「<b>${CORE_WORD[t2]}</b>」の力。この2つが、これからの3ヶ月であなたを動かすエンジンになります。`)) +
+    sec("これから3ヶ月の追い風", para(FUTURE_TAILWIND[t1]) + para(`そこに「${CORE_WORD[t2]}」の力が加わることで、追い風はさらに確かなものになります。`)) +
+    sec("月ごとの流れ", monthHtml) +
+    sec("進むべき方向", para(FUTURE_DIRECTION[t1])) +
+    sec("気をつけたいこと", para(FUTURE_CAUTION[t1])) +
+    sec("扉をひらく開運ガイド", para(`この3ヶ月、あなたを後押ししてくれる味方たちです。`) + `<div class="fr-practical">${renderPractical(p)}</div>`) +
+    `<div class="fr-msg">3ヶ月後のあなたは、いまより少しだけ遠くへ進んでいます。<br>大丈夫、扉はもう、あなたの目の前にあります。<span class="fr-msg-big">あとは、あなたが一歩、踏み出すだけ。</span></div>` +
+    `<p class="fr-end">✦　未来の扉 ソウルコード分析の書　|　ソウルコードリサーチャー Fumiyo Sorakubo　✦</p>` +
     `</div>`;
 }
 
