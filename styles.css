@@ -1738,3 +1738,34 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   body.print-reading #fullreading .next-actions{display:none !important}
   body.print-reading #fullreading .fr-wrap{box-shadow:none !important;page-break-inside:auto}
 }
+
+/* v49 ─ 完全版へのアップセル（無料はチラ見せ→完全版に誘導） */
+.sc-upsell{
+  max-width:520px;margin:26px auto 0;padding:26px 22px 24px;
+  border:1px solid rgba(231,200,115,.42);border-radius:20px;
+  background:linear-gradient(180deg,rgba(20,32,56,.72),rgba(11,18,32,.82));
+  box-shadow:0 10px 40px rgba(0,0,0,.35),inset 0 0 0 1px rgba(231,200,115,.10);
+  text-align:center;backdrop-filter:blur(4px);
+}
+.sc-upsell-eyebrow{
+  letter-spacing:.18em;font-size:.74rem;font-weight:700;
+  color:#e7c873;margin:0 0 10px;text-transform:uppercase;
+}
+.sc-upsell-lead{color:#e8ecf5;line-height:1.85;font-size:.98rem;margin:0 0 16px}
+.sc-upsell-lead strong{color:#f3dd97}
+.sc-upsell-list{
+  list-style:none;padding:0;margin:0 0 20px;text-align:left;
+  display:inline-block;
+}
+.sc-upsell-list li{
+  position:relative;padding:7px 0 7px 28px;color:#dfe5f0;
+  font-size:.94rem;border-bottom:1px dashed rgba(231,200,115,.16);
+}
+.sc-upsell-list li:last-child{border-bottom:none}
+.sc-upsell-list li::before{
+  content:"✦";position:absolute;left:4px;top:7px;color:#e7c873;font-size:.9rem;
+}
+.sc-upsell .primary-action{
+  width:100%;font-size:1.06rem;padding:15px 20px;
+}
+.sc-upsell-note{margin:12px 0 0;font-size:.8rem;color:#9fb0c8;line-height:1.6}

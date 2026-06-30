@@ -234,25 +234,28 @@ function bindPassportActions() {
 // 公式LINE（予約・ヒアリング・お渡し・決済リンク送付の受け皿）
 const LINE_URL = "https://lin.ee/W7d54wH";
 
-// 申し込み・お支払いは公式LINEで受付。
-// 決済はLINEのトーク内で下記Stripeリンクを送ればカード決済できます（※現在テストリンク）。
+// 決済は本番Stripeリンク。入金後、自動で鑑定書がメール送付される。
+// リンクがある商品はStripe決済に直結、未設定の商品は公式LINEで受付。
 const STRIPE_LINKS = {
-  report: "https://buy.stripe.com/test_cNi00icdjeyc2hleiHbjW00",   // 完全版鑑定書 ¥1,980
-  future: "https://buy.stripe.com/test_aFa28qdhn9dS7BF2zZbjW01",   // 未来の扉 ¥3,300
-  session: "https://buy.stripe.com/test_fZu3cu2CJ61Gg8bgqPbjW02",  // 個別セッション ¥10,000
+  report: "https://buy.stripe.com/7sYfZg6Y41bR5Kfd6BafS00",   // 完全版鑑定書 ¥1,980（本番）
+  future: "",   // 未来の扉 ¥3,300（本番リンク取得後にここへ）→ 当面はLINE
+  session: "",  // 個別セッション ¥10,000（本番リンク取得後にここへ）→ 当面はLINE
 };
 
 function bindOfferActions() {
   document.querySelectorAll("[data-product]").forEach((button) => {
     button.addEventListener("click", () => {
       const product = button.dataset.product;
-      const reportSeed = activeProfile ? createReportSeed(activeProfile, product) : null;
-      if (reportSeed) {
-        console.info("Report seed", reportSeed);
+      const link = STRIPE_LINKS[product];
+      if (link) {
+        // Stripe決済に直結（入金後、自動で鑑定書が届く）
+        showToast("決済ページへ。入金後、自動で鑑定書がメールで届きます🌙");
+        window.open(link, "_blank", "noopener");
+      } else {
+        // 本番リンク未設定の商品は公式LINEで受付
+        showToast("公式LINEへ。トークからご予約・お支払いができます🌙");
+        window.open(LINE_URL, "_blank", "noopener");
       }
-      // 予約・ヒアリング・お支払いはすべて公式LINEで受付
-      showToast("公式LINEへ。トークからご予約・お支払いができます🌙");
-      window.open(LINE_URL, "_blank", "noopener");
     });
   });
 
@@ -1151,7 +1154,7 @@ function luckyText(ctx, text, x, y, o = {}) {
 // 採用デザイン(assets/lucky-bg.png 852x1070)を背景に、本人の5コアを差し替えて描画
 const LUCKY_BG = "./assets/lucky-bg.png?v=46";
 // 5コアの配置（強い順：上→左上→右上→左下→右下）。元数字の中心に合わせて校正済み。
-const LUCKY_POS = [[422, 242], [186, 445], [663, 443], [255, 678], [595, 683]];
+const LUCKY_POS = [[423, 279], [187, 458], [662, 458], [258, 690], [600, 690]];
 
 async function renderLuckyCanvas(profile) {
   const canvas = document.querySelector("#lucky-canvas");
