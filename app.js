@@ -238,7 +238,7 @@ const LINE_URL = "https://lin.ee/W7d54wH";
 // リンクがある商品はStripe決済に直結、未設定の商品は公式LINEで受付。
 const STRIPE_LINKS = {
   report: "https://buy.stripe.com/7sYfZg6Y41bR5Kfd6BafS00",   // 完全版鑑定書 ¥1,980（本番）
-  future: "",   // 未来の扉 ¥3,300（本番リンク取得後にここへ）→ 当面はLINE
+  future: "https://buy.stripe.com/fZu28q5U08Ej6OjgiNafS01",   // 未来の扉 ¥3,300（本番）
   session: "",  // 個別セッション ¥10,000（本番リンク取得後にここへ）→ 当面はLINE
 };
 
